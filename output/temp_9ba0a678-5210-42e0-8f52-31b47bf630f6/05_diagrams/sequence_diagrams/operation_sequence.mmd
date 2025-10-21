@@ -1,0 +1,136 @@
+```mermaid
+sequenceDiagram
+    participant 用户 as 用户操作端
+    participant CS as 控制服务器 101
+    participant DB as 数据库 103
+    participant RS as 中继服务器 102
+    participant DS as 数据源服务器 105
+    participant C1 as 客户端 104-1
+    participant C2 as 客户端 104-2
+
+    Note over 用户,C2: 基于混合协议的大规模文件分发操作时序
+
+    %% 阶段1：任务初始化
+    用户->>+CS: S201：发送文件分发请求
+    Note right of 用户: 包含文件URL、客户端列表、配置参数
+
+    CS->>+DB: S202：验证参数并创建任务
+    DB-->>-CS: 任务信息持久化存储
+
+    CS->>CS: S203：智能选择中继服务器
+    Note right of CS: 基于地理位置、网络质量、负载分析
+
+    %% 阶段2：任务下发
+    par 并行任务下发
+        CS->>+C1: S204：下发分发任务
+        C1-->>-CS: 确认接收任务
+    and
+        CS->>+C2: S204：下发分发任务
+        C2-->>-CS: 确认接收任务
+    and
+        CS->>+RS: S205：下发中继任务
+        RS-->>-CS: 确认接收任务
+    end
+
+    %% 阶段3：文件拉取与流式传输
+    RS->>+DS: 开始文件拉取
+    Note right of RS: 多线程并发下载，支持断点续传
+
+    DS-->>RS: 流式返回文件数据
+    Note left of DS: 边拉取边传输
+
+    RS->>RS: S206：启动流式传输
+    Note right of RS: 缓冲区管理，达到阈值即开始服务
+
+    %% 阶段4：客户端下载启动
+    C1->>+RS: 请求获取torrent文件
+    RS-->>-C1: 返回torrent和元数据
+
+    C2->>+RS: 请求获取torrent文件
+    RS-->>-C2: 返回torrent和元数据
+
+    %% 阶段5：P2P网络建立
+    C1->>+C2: S207：建立BitTorrent连接
+    C2-->>-C1: 确认P2P连接
+
+    C1->>RS: 开始BitTorrent下载
+    C2->>RS: 开始BitTorrent下载
+    C1->>C2: 开始P2P数据交换
+
+    %% 阶段6：协议切换过程
+    loop 速度监测与协议切换
+        C1->>C1: S208：监测下载速度
+
+        alt 速度低于阈值
+            C1->>+RS: S210：发起HTTP下载请求
+            Note right of C1: Range请求，支持分段下载
+
+            RS-->>-C1: HTTP数据流
+            C1->>C1: S211：整合HTTP数据到BT系统
+
+            C1->>C2: 通知数据块更新
+        else 速度正常
+            C1->>C2: 继续P2P数据交换
+        end
+    end
+
+    %% 阶段7：下载完成与种子转换
+    C1->>C1: 本地下载完成检查
+
+    C1->>CS: S211：上报下载完成状态
+    C2->>CS: S211：上报下载完成状态
+
+    Note over C1,C2: 自动转换为种子节点
+    C1->>C2: 继续提供上传服务
+
+    %% 阶段8：统计与优化
+    CS->>+DB: S212：收集统计信息
+    Note right of CS: 包括下载速度、成功率、协议使用比例等
+
+    DB-->>-CS: 返回汇总数据
+
+    CS->>CS: S212：优化分发策略
+    Note right of CS: 调整中继服务器数量、修改切换阈值等
+
+    %% 阶段9：状态同步与清理
+    CS->>DB: 更新任务最终状态
+    CS->>RS: 通知清理临时数据
+    CS->>C1: 任务完成确认
+    CS->>C2: 任务完成确认
+
+    Note over 用户,C2: 整个分发流程完成
+
+    %% 异常处理分支
+    alt HTTP下载失败
+        C1-xRS: HTTP连接失败
+        C1->>C1: 自动重试机制
+        C1->>RS: 切换备用服务器
+    else P2P网络异常
+        C1-xC2: P2P连接中断
+        C1->>RS: 增加HTTP下载比例
+    else 速度持续异常
+        C1->>CS: 上报异常状态
+        CS->>CS: 动态调整配额分配
+    end
+
+    %% 样式定义
+    rect rgb(240, 248, 255)
+        Note over 用户,CS: 任务初始化阶段
+    end
+
+    rect rgb(240, 255, 240)
+        Note over CS,C2: 任务下发阶段
+    end
+
+    rect rgb(255, 248, 220)
+        Note over RS,C2: 文件拉取与分发阶段
+    end
+
+    rect rgb(248, 240, 255)
+        Note over C1,C2: 协议切换阶段
+    end
+
+    rect rgb(240, 255, 255)
+        Note over CS,DB: 统计优化阶段
+    end
+```

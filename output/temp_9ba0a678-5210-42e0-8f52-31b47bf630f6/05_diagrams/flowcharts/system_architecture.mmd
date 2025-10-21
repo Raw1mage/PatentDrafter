@@ -1,0 +1,77 @@
+```mermaid
+graph TB
+    subgraph "系统架构图"
+        subgraph "管理层"
+            CS[控制服务器 101<br/>Control Server]
+        end
+
+        subgraph "中继层"
+            RS1[中继服务器 102-1<br/>Relay Server]
+            RS2[中继服务器 102-2<br/>Relay Server]
+            RS3[中继服务器 102-N<br/>Relay Server]
+        end
+
+        subgraph "存储层"
+            DB[数据库 103<br/>Database]
+            DS[数据源服务器 105<br/>Data Source Server]
+        end
+
+        subgraph "客户端层"
+            C1[客户端 104-1<br/>Client]
+            C2[客户端 104-2<br/>Client]
+            C3[客户端 104-N<br/>Client]
+        end
+
+        subgraph "外部网络"
+            INTERNET[互联网<br/>Internet]
+            CDN[CDN网络<br/>CDN Network]
+        end
+    end
+
+    %% 管理层连接
+    CS -->|RESTful API| RS1
+    CS -->|RESTful API| RS2
+    CS -->|RESTful API| RS3
+    CS -->|SQL查询| DB
+    CS -->|任务下发| C1
+    CS -->|任务下发| C2
+    CS -->|任务下发| C3
+
+    %% 中继层连接
+    RS1 -->|HTTP/HTTPS| DS
+    RS2 -->|HTTP/HTTPS| DS
+    RS3 -->|HTTP/HTTPS| DS
+
+    %% 客户端与中继服务器连接
+    C1 -->|BitTorrent协议| RS1
+    C1 -->|HTTP协议| RS1
+    C1 -->|BitTorrent协议| RS2
+    C2 -->|BitTorrent协议| RS2
+    C2 -->|HTTP协议| RS2
+    C3 -->|BitTorrent协议| RS3
+    C3 -->|HTTP协议| RS3
+
+    %% P2P网络连接
+    C1 <-->|BitTorrent协议| C2
+    C2 <-->|BitTorrent协议| C3
+    C1 <-->|BitTorrent协议| C3
+
+    %% 外部网络连接
+    DS -->|文件存储| INTERNET
+    RS1 -.->|CDN集成| CDN
+    RS2 -.->|CDN集成| CDN
+    RS3 -.->|CDN集成| CDN
+
+    %% 样式定义
+    classDef controlServer fill:#4CAF50,color:#fff,stroke:#388E3C
+    classDef relayServer fill:#2196F3,color:#fff,stroke:#1976D2
+    classDef storage fill:#FF9800,color:#fff,stroke:#F57C00
+    classDef client fill:#9C27B0,color:#fff,stroke:#7B1FA2
+    classDef network fill:#607D8B,color:#fff,stroke:#455A64
+
+    class CS controlServer
+    class RS1,RS2,RS3 relayServer
+    class DB,DS storage
+    class C1,C2,C3 client
+    class INTERNET,CDN network
+```

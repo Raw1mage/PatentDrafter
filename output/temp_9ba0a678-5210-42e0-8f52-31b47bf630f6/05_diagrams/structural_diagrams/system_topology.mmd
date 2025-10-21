@@ -1,0 +1,167 @@
+```mermaid
+graph TB
+    subgraph "大规模文件分发系统网络拓扑"
+        subgraph "全球网络层"
+            subgraph "亚洲区域"
+                ASIA_CS[亚洲控制服务器集群<br/>Tokyo/Singapore/Hong Kong]
+                ASIA_RS1[亚洲中继服务器 1<br/>Tokyo]
+                ASIA_RS2[亚洲中继服务器 2<br/>Singapore]
+                ASIA_RS3[亚洲中继服务器 3<br/>Hong Kong]
+            end
+
+            subgraph "欧洲区域"
+                EUROPE_CS[欧洲控制服务器集群<br/>London/Frankfurt/Paris]
+                EUROPE_RS1[欧洲中继服务器 1<br/>London]
+                EUROPE_RS2[欧洲中继服务器 2<br/>Frankfurt]
+                EUROPE_RS3[欧洲中继服务器 3<br/>Paris]
+            end
+
+            subgraph "北美区域"
+                NA_CS[北美控制服务器集群<br/>New York/San Francisco/Virginia]
+                NA_RS1[北美中继服务器 1<br/>New York]
+                NA_RS2[北美中继服务器 2<br/>San Francisco]
+                NA_RS3[北美中继服务器 3<br/>Virginia]
+            end
+        end
+
+        subgraph "CDN集成层"
+            CDN_GLOBAL[全球CDN网络]
+            CDN_ASIA[亚洲CDN节点]
+            CDN_EUROPE[欧洲CDN节点]
+            CDN_NA[北美CDN节点]
+        end
+
+        subgraph "数据源层"
+            DS_GLOBAL[全球数据源网络]
+            DS_PRIMARY[主数据源集群<br/>高可用部署]
+            DS_BACKUP[备份数据源集群<br/>异地容灾]
+            DS_EDGE[边缘数据源<br/>就近访问优化]
+        end
+
+        subgraph "客户端分布层"
+            subgraph "企业客户端"
+                ENT_CLIENT1[企业内网客户端 1<br/>Office Network]
+                ENT_CLIENT2[企业内网客户端 2<br/>Branch Office]
+                ENT_CLIENT3[企业内网客户端 N<br/>Remote Office]
+            end
+
+            subgraph "家庭客户端"
+                HOME_CLIENT1[家庭宽带客户端 1<br/>Fiber Connection]
+                HOME_CLIENT2[家庭宽带客户端 2<br/>Cable Connection]
+                HOME_CLIENT3[家庭宽带客户端 N<br/>DSL Connection]
+            end
+
+            subgraph "移动客户端"
+                MOBILE_CLIENT1[移动网络客户端 1<br/>4G/5G Network]
+                MOBILE_CLIENT2[移动网络客户端 2<br/>WiFi Connection]
+                MOBILE_CLIENT3[移动网络客户端 N<br/>Mixed Network]
+            end
+        end
+
+        subgraph "网络基础设施"
+            BACKBONE[全球网络骨干<br/>High-speed Backbone]
+            ISP_A[电信运营商 A<br/>Major ISP]
+            ISP_B[电信运营商 B<br/>Regional ISP]
+            ISP_C[电信运营商 C<br/>Local ISP]
+        end
+    end
+
+    %% 区域间连接
+    ASIA_CS <-->|高带宽专线| EUROPE_CS
+    ASIA_CS <-->|高带宽专线| NA_CS
+    EUROPE_CS <-->|高带宽专线| NA_CS
+
+    %% 控制服务器与中继服务器连接
+    ASIA_CS --> ASIA_RS1
+    ASIA_CS --> ASIA_RS2
+    ASIA_CS --> ASIA_RS3
+    EUROPE_CS --> EUROPE_RS1
+    EUROPE_CS --> EUROPE_RS2
+    EUROPE_CS --> EUROPE_RS3
+    NA_CS --> NA_RS1
+    NA_CS --> NA_RS2
+    NA_CS --> NA_RS3
+
+    %% CDN集成连接
+    ASIA_RS1 -.->|CDN集成| CDN_ASIA
+    EUROPE_RS1 -.->|CDN集成| CDN_EUROPE
+    NA_RS1 -.->|CDN集成| CDN_NA
+    CDN_GLOBAL -.-> CDN_ASIA
+    CDN_GLOBAL -.-> CDN_EUROPE
+    CDN_GLOBAL -.-> CDN_NA
+
+    %% 数据源连接
+    ASIA_RS1 -->|文件拉取| DS_GLOBAL
+    EUROPE_RS1 -->|文件拉取| DS_GLOBAL
+    NA_RS1 -->|文件拉取| DS_GLOBAL
+    DS_GLOBAL --> DS_PRIMARY
+    DS_GLOBAL --> DS_BACKUP
+    DS_GLOBAL --> DS_EDGE
+
+    %% 客户端连接
+    ENT_CLIENT1 -->|企业内网P2P| ASIA_RS1
+    ENT_CLIENT2 -->|企业内网P2P| EUROPE_RS1
+    ENT_CLIENT3 -->|企业内网P2P| NA_RS1
+
+    HOME_CLIENT1 -->|家庭宽带| ASIA_RS2
+    HOME_CLIENT2 -->|家庭宽带| EUROPE_RS2
+    HOME_CLIENT3 -->|家庭宽带| NA_RS2
+
+    MOBILE_CLIENT1 -->|移动网络| ASIA_RS3
+    MOBILE_CLIENT2 -->|移动网络| EUROPE_RS3
+    MOBILE_CLIENT3 -->|移动网络| NA_RS3
+
+    %% P2P网络连接
+    ENT_CLIENT1 <-->|P2P协议| ENT_CLIENT2
+    HOME_CLIENT1 <-->|P2P协议| HOME_CLIENT2
+    MOBILE_CLIENT1 <-->|P2P协议| MOBILE_CLIENT2
+
+    %% 网络基础设施连接
+    BACKBONE --> ISP_A
+    BACKBONE --> ISP_B
+    BACKBONE --> ISP_C
+
+    ISP_A --> ENT_CLIENT1
+    ISP_A --> HOME_CLIENT1
+    ISP_A --> MOBILE_CLIENT1
+    ISP_B --> ENT_CLIENT2
+    ISP_B --> HOME_CLIENT2
+    ISP_B --> MOBILE_CLIENT2
+    ISP_C --> ENT_CLIENT3
+    ISP_C --> HOME_CLIENT3
+    ISP_C --> MOBILE_CLIENT3
+
+    %% 容灾备份连接
+    DS_PRIMARY <-->|实时同步| DS_BACKUP
+    DS_BACKUP <-->|边缘缓存| DS_EDGE
+
+    %% 网络优化特性标注
+    subgraph "网络优化特性"
+        OPT1[智能路由选择<br/>基于延迟和带宽]
+        OPT2[负载均衡<br/>动态流量分配]
+        OPT3[故障转移<br/>自动切换机制]
+        OPT4[缓存优化<br/>边缘节点预取]
+    end
+
+    BACKBONE -.-> OPT1
+    ASIA_CS -.-> OPT2
+    EUROPE_CS -.-> OPT3
+    NA_CS -.-> OPT4
+
+    %% 样式定义
+    classDef control fill:#4CAF50,color:#fff,stroke:#388E3C
+    classDef relay fill:#2196F3,color:#fff,stroke:#1976D2
+    classDef cdn fill:#FF9800,color:#fff,stroke:#F57C00
+    classDef datasource fill:#9C27B0,color:#fff,stroke:#7B1FA2
+    classDef client fill:#607D8B,color:#fff,stroke:#455A64
+    classDef network fill:#795548,color:#fff,stroke:#5D4037
+    classDef feature fill:#E91E63,color:#fff,stroke:#C2185B
+
+    class ASIA_CS,EUROPE_CS,NA_CS control
+    class ASIA_RS1,ASIA_RS2,ASIA_RS3,EUROPE_RS1,EUROPE_RS2,EUROPE_RS3,NA_RS1,NA_RS2,NA_RS3 relay
+    class CDN_GLOBAL,CDN_ASIA,CDN_EUROPE,CDN_NA cdn
+    class DS_GLOBAL,DS_PRIMARY,DS_BACKUP,DS_EDGE datasource
+    class ENT_CLIENT1,ENT_CLIENT2,ENT_CLIENT3,HOME_CLIENT1,HOME_CLIENT2,HOME_CLIENT3,MOBILE_CLIENT1,MOBILE_CLIENT2,MOBILE_CLIENT3 client
+    class BACKBONE,ISP_A,ISP_B,ISP_C network
+    class OPT1,OPT2,OPT3,OPT4 feature
+```

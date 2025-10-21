@@ -1,0 +1,176 @@
+```mermaid
+sequenceDiagram
+    participant CS as 控制服务器 101
+    participant DB as 数据库 103
+    participant RS as 中继服务器 102
+    participant DS as 数据源服务器 105
+    participant Client as 客户端 104
+    participant TM as 任务管理模块
+    participant PC as 参数配置模块
+    participant BT as BitTorrent引擎
+    participant HTTP as HTTP服务模块
+    participant SM as 速度监测模块
+    participant PS as 协议切换模块
+
+    Note over CS,PS: 组件详细交互时序图
+
+    %% 阶段1：系统初始化组件交互
+    CS->>+TM: 创建中继任务和分发任务
+    TM->>+DB: 持久化任务信息
+    DB-->>-TM: 确认任务存储成功
+    TM-->>-CS: 返回任务创建结果
+
+    CS->>+PC: 配置全局下载参数
+    Note right of CS: 并发数、带宽、流量限制
+
+    PC->>+DB: 存储配置参数
+    DB-->>-PC: 配置保存确认
+    PC-->>-CS: 参数配置完成
+
+    CS->>+RS: 下发中继任务
+    RS-->>-CS: 任务接收确认
+
+    CS->>+Client: 下发分发任务
+    Client-->>-CS: 任务接收确认
+
+    %% 阶段2：中继服务器组件交互
+    RS->>+DS: 启动文件拉取
+    Note right of RS: 多线程并发下载
+
+    DS-->>RS: 流式返回文件数据
+
+    RS->>RS: 启动缓冲区管理
+    Note right of RS: 动态调整缓冲区大小
+
+    RS->>+HTTP: 启动HTTP服务
+    HTTP-->>RS: HTTP服务就绪
+
+    RS->>+BT: 启动BitTorrent服务
+    BT-->>RS: BT服务就绪
+
+    %% 阶段3：客户端下载组件交互
+    Client->>+BT: 获取torrent文件
+    BT-->>Client: 返回torrent和元数据
+
+    Client->>+BT: 启动BitTorrent下载
+    BT->>RS: 建立P2P连接
+    RS-->>BT: 确认连接建立
+
+    Client->>+SM: 启动速度监测
+    Note right of Client: 滑动窗口统计算法
+
+    %% 阶段4：协议切换组件交互
+    loop 速度监测循环
+        SM->>SM: 计算平均下载速度
+        SM->>SM: 检查是否低于阈值
+
+        alt 触发协议切换
+            SM->>+PS: 启动协议切换流程
+
+            PS->>PS: 环境分析
+            Note right of PS: 网络延迟、丢包率、带宽测试
+
+            PS->>PS: 资源评估
+            Note right of PS: peer数量、服务器负载
+
+            PS->>PS: 切换决策
+            Note right of PS: 基于评分算法
+
+            PS->>+HTTP: 发起HTTP下载请求
+            Note right of PS: Range请求，分段下载
+
+            HTTP->>RS: HTTP数据请求
+            RS-->>HTTP: 返回HTTP数据流
+            HTTP-->>PS: 返回下载数据
+
+            PS->>BT: 整合数据到BT系统
+            BT->>BT: 更新块可用性
+            BT-->>PS: 数据整合完成
+
+            PS-->>-SM: 协议切换完成
+        else 速度正常
+            SM->>SM: 继续监测
+        end
+    end
+
+    %% 阶段5：状态监控与上报组件交互
+    Client->>+TM: 上报下载进度
+    TM->>+DB: 更新客户端状态
+    DB-->>-TM: 状态更新确认
+    TM-->>Client: 状态上报确认
+
+    RS->>+TM: 上传中继服务器状态
+    TM->>+DB: 更新服务器状态
+    DB-->>-TM: 状态更新确认
+    TM-->>RS: 状态上报确认
+
+    %% 阶段6：动态调整组件交互
+    TM->>+PC: 请求配额调整
+    Note right of TM: 基于负载情况
+
+    PC->>PC: 计算新配额分配
+    Note right of PC: 多维度配额计算算法
+
+    PC->>+DB: 更新配额配置
+    DB-->>-PC: 配置更新确认
+
+    PC->>+Client: 下发新配额
+    Client-->>PC: 配额应用确认
+    PC-->>-TM: 配额调整完成
+
+    %% 阶段7：异常处理组件交互
+    alt HTTP连接异常
+        PS-xHTTP: HTTP连接失败
+        PS->>PS: 启动重试机制
+        PS->>RS: 切换备用连接
+    else P2P网络异常
+        BT-xRS: P2P连接中断
+        BT->>PS: 通知网络异常
+        PS->>PS: 调整切换策略
+    else 速度持续异常
+        SM->>PS: 持续低速度告警
+        PS->>TM: 请求参数调整
+        TM->>PC: 调整全局参数
+    end
+
+    %% 阶段8：任务完成组件交互
+    Client->>TM: 上报下载完成
+    TM->>+DB: 更新任务完成状态
+    DB-->>-TM: 状态更新确认
+
+    Client->>Client: 转换为种子节点
+    Note right of Client: 继续为其他客户端提供上传服务
+
+    TM->>CS: 任务完成通知
+    CS->>PC: 清理相关配置
+    CS->>RS: 通知清理临时数据
+
+    %% 阶段9：系统优化组件交互
+    TM->>+DB: 收集性能统计
+    Note right of TM: 下载速度、成功率、协议使用比例
+
+    DB-->>-TM: 返回汇总统计数据
+
+    TM->>CS: 提供优化建议
+    CS->>CS: 调整系统策略
+    Note right of CS: 中继服务器数量、协议切换阈值等
+
+    Note over CS,PS: 组件交互流程完成
+
+    %% 组件内部交互详情
+    rect rgb(245, 245, 220)
+        Note over PC: 配置模块内部交互<br/>令牌桶算法：带宽控制<br/>滑动窗口：流量统计<br/>动态分配：配额管理
+    end
+
+    rect rgb(220, 245, 245)
+        Note over SM: 监测模块内部交互<br/>滑动窗口：速度统计<br/>阈值比较：异常检测<br/>趋势分析：状态预测
+    end
+
+    rect rgb(245, 220, 245)
+        Note over PS: 切换模块内部交互<br/>环境分析：网络检测<br/>资源评估：负载分析<br/>决策算法：智能切换
+    end
+
+    rect rgb(220, 245, 220)
+        Note over BT: P2P模块内部交互<br/>peer管理：连接维护<br/>块选择：稀缺度分析<br/>choking算法：带宽分配
+    end
+```

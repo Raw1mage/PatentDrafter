@@ -1,0 +1,146 @@
+```mermaid
+graph LR
+    subgraph "数据流向图"
+        subgraph "数据源"
+            DS[数据源服务器 105<br/>原始文件存储]
+        end
+
+        subgraph "中继层"
+            RS[中继服务器 102<br/>数据中转处理]
+
+            subgraph "缓冲区管理"
+                RB[接收缓冲区<br/>1MB-1GB]
+                SB[服务缓冲区<br/>动态调整]
+                AB[备用缓冲区<br/>临时存储]
+            end
+
+            subgraph "协议适配"
+                HTTP_S[HTTP服务模块]
+                BT_S[BitTorrent服务模块]
+            end
+        end
+
+        subgraph "客户端网络"
+            C1[客户端 104-1]
+            C2[客户端 104-2]
+            C3[客户端 104-N]
+
+            subgraph "下载引擎"
+                HTTP_C[HTTP下载器]
+                BT_C[BitTorrent下载器]
+                DM[数据管理器]
+            end
+
+            subgraph "协议切换逻辑"
+                SM[速度监测]
+                PS[协议切换]
+                QC[质量控制]
+            end
+        end
+
+        subgraph "控制中心"
+            CS[控制服务器 101]
+            DB[(数据库 103)]
+        end
+    end
+
+    %% 主要数据流向
+    DS -->|1. 文件拉取| RS
+    RS -->|2. 缓冲区存储| RB
+    RB -->|3. 数据验证| SB
+    SB -->|4. HTTP服务| HTTP_S
+    SB -->|5. BitTorrent服务| BT_S
+
+    HTTP_S -->|6. HTTP数据流| HTTP_C
+    BT_S -->|7. P2P数据流| BT_C
+
+    HTTP_C -->|8. 数据整合| DM
+    BT_C -->|9. 数据交换| DM
+    DM -->|10. 文件重组| C1
+    DM -->|10. 文件重组| C2
+    DM -->|10. 文件重组| C3
+
+    %% P2P网络数据流
+    C1 <-->|11. P2P数据交换| C2
+    C2 <-->|11. P2P数据交换| C3
+    C1 <-->|11. P2P数据交换| C3
+
+    %% 控制信息流
+    CS -->|12. 任务下发| C1
+    CS -->|12. 任务下发| C2
+    CS -->|12. 任务下发| C3
+    CS -->|13. 配置管理| RS
+
+    C1 -->|14. 状态上报| CS
+    C2 -->|14. 状态上报| CS
+    C3 -->|14. 状态上报| CS
+    RS -->|15. 状态上报| CS
+
+    CS -->|16. 数据持久化| DB
+    DB -->|17. 配置读取| CS
+
+    %% 协议切换控制流
+    SM -->|18. 速度数据| PS
+    PS -->|19. 切换指令| HTTP_C
+    PS -->|20. 切换指令| BT_C
+    HTTP_C -->|21. 下载状态| QC
+    BT_C -->|22. 下载状态| QC
+    QC -->|23. 质量反馈| SM
+
+    %% 缓冲区内部流
+    RB -->|24. 数据验证| SB
+    SB -->|25. 服务数据| HTTP_S
+    SB -->|26. 种子数据| BT_S
+    AB -.->|27. 缓冲切换| RB
+    AB -.->|27. 缓冲切换| SB
+
+    %% 数据块管理流
+    subgraph "数据块管理流程"
+        BLOCK[数据块处理流程]
+
+        S1[文件分块<br/>256KB-1MB]
+        S2[完整性校验<br/>MD5/SHA256]
+        S3[块索引建立<br/>快速查找]
+        S4[优先级排序<br/>稀缺度分析]
+        S5[分发调度<br/>负载均衡]
+
+        S1 --> S2 --> S3 --> S4 --> S5
+    end
+
+    RS -.->|数据块处理| BLOCK
+    BLOCK -.->|优化数据流| HTTP_S
+    BLOCK -.->|优化数据流| BT_S
+
+    %% 流量控制流
+    subgraph "流量控制机制"
+        CONTROL[流量控制流程]
+
+        T1[令牌桶算法<br/>带宽限制]
+        T2[滑动窗口<br/>流量统计]
+        T3[动态配额<br/>按需分配]
+        T4[实时监控<br/>负载调整]
+
+        T1 --> T2 --> T3 --> T4
+    end
+
+    CS -.->|流量控制| CONTROL
+    CONTROL -.->|配额管理| RS
+    CONTROL -.->|配额管理| C1
+    CONTROL -.->|配额管理| C2
+    CONTROL -.->|配额管理| C3
+
+    %% 样式定义
+    classDef dataSource fill:#4CAF50,color:#fff,stroke:#388E3C
+    classDef relay fill:#2196F3,color:#fff,stroke:#1976D2
+    classDef client fill:#9C27B0,color:#fff,stroke:#7B1FA2
+    classDef control fill:#FF9800,color:#fff,stroke:#F57C00
+    classDef data fill:#607D8B,color:#fff,stroke:#455A64
+    classDef process fill:#795548,color:#fff,stroke:#5D4037
+
+    class DS dataSource
+    class RS,HTTP_S,BT_S relay
+    class C1,C2,C3,HTTP_C,BT_C client
+    class CS,DB control
+    class RB,SB,AB,DM data
+    class BLOCK,CONTROL process
+```

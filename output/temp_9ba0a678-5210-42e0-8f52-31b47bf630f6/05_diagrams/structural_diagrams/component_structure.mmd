@@ -1,0 +1,170 @@
+```mermaid
+graph TB
+    subgraph "系统组件结构图"
+        subgraph "控制服务器 101 组件结构"
+            CS_CORE[控制服务器核心模块]
+
+            subgraph "任务管理模块 101-1"
+                TM_1[中继任务管理]
+                TM_2[分发任务管理]
+                TM_3[任务调度引擎]
+            end
+
+            subgraph "参数配置模块 101-2"
+                PC_1[全局参数配置]
+                PC_2[动态配额分配]
+                PC_3[负载均衡算法]
+            end
+
+            subgraph "监控模块 101-3"
+                MON_1[实时状态监控]
+                MON_2[性能指标收集]
+                MON_3[告警管理]
+            end
+
+            subgraph "API接口模块 101-4"
+                API_1[RESTful API服务]
+                API_2[消息队列管理]
+                API_3[安全认证]
+            end
+        end
+
+        subgraph "中继服务器 102 组件结构"
+            RS_CORE[中继服务器核心模块]
+
+            subgraph "文件拉取模块 102-1"
+                FP_1[多线程下载引擎]
+                FP_2[断点续传管理]
+                FP_3[多源并发拉取]
+            end
+
+            subgraph "协议服务模块 102-2"
+                PS_1[HTTP服务引擎]
+                PS_2[BitTorrent引擎]
+                PS_3[协议适配层]
+            end
+
+            subgraph "流式传输模块 102-3"
+                ST_1[动态缓冲区管理]
+                ST_2[启动条件检查]
+                ST_3[数据预取策略]
+            end
+
+            subgraph "数据缓存模块 102-4"
+                CACHE_1[接收缓冲区]
+                CACHE_2[服务缓冲区]
+                CACHE_3[备用缓冲区]
+            end
+        end
+
+        subgraph "客户端 104 组件结构"
+            CLIENT_CORE[客户端核心模块]
+
+            subgraph "协议切换模块 104-1"
+                PS_1[速度监测引擎]
+                PS_2[智能切换算法]
+                PS_3[冷却期管理]
+            end
+
+            subgraph "下载管理模块 104-2"
+                DM_1[BitTorrent下载器]
+                DM_2[HTTP下载器]
+                DM_3[数据块管理器]
+            end
+
+            subgraph "状态上报模块 104-3"
+                SR_1[性能统计收集]
+                SR_2[状态信息上报]
+                SR_3[错误日志管理]
+            end
+
+            subgraph "用户界面模块 104-4"
+                UI_1[图形界面]
+                UI_2[命令行界面]
+                UI_3[配置管理]
+            end
+        end
+
+        subgraph "数据库 103 组件结构"
+            DB_CORE[数据库核心模块]
+
+            subgraph "数据存储模块 103-1"
+                DS_1[任务信息存储]
+                DS_2[客户端状态存储]
+                DS_3[配置信息存储]
+            end
+
+            subgraph "缓存管理模块 103-2"
+                CM_1[Redis缓存]
+                CM_2[热点数据缓存]
+                CM_3[查询优化]
+            end
+
+            subgraph "备份恢复模块 103-3"
+                BR_1[数据备份]
+                BR_2[故障恢复]
+                BR_3[一致性检查]
+            end
+        end
+    end
+
+    %% 组件内部连接
+    CS_CORE --> TM_1
+    CS_CORE --> PC_1
+    CS_CORE --> MON_1
+    CS_CORE --> API_1
+
+    TM_1 --> TM_2 --> TM_3
+    PC_1 --> PC_2 --> PC_3
+    MON_1 --> MON_2 --> MON_3
+    API_1 --> API_2 --> API_3
+
+    RS_CORE --> FP_1
+    RS_CORE --> PS_1
+    RS_CORE --> ST_1
+    RS_CORE --> CACHE_1
+
+    FP_1 --> FP_2 --> FP_3
+    PS_1 --> PS_2 --> PS_3
+    ST_1 --> ST_2 --> ST_3
+    CACHE_1 --> CACHE_2 --> CACHE_3
+
+    CLIENT_CORE --> PS_1
+    CLIENT_CORE --> DM_1
+    CLIENT_CORE --> SR_1
+    CLIENT_CORE --> UI_1
+
+    PS_1 --> PS_2 --> PS_3
+    DM_1 --> DM_2 --> DM_3
+    SR_1 --> SR_2 --> SR_3
+    UI_1 --> UI_2 --> UI_3
+
+    DB_CORE --> DS_1
+    DB_CORE --> CM_1
+    DB_CORE --> BR_1
+
+    DS_1 --> DS_2 --> DS_3
+    CM_1 --> CM_2 --> CM_3
+    BR_1 --> BR_2 --> BR_3
+
+    %% 组件间连接
+    API_1 -.->|RESTful API| RS_CORE
+    API_1 -.->|RESTful API| CLIENT_CORE
+    API_1 -.->|SQL查询| DB_CORE
+
+    SR_2 -.->|状态上报| API_1
+    MON_2 -.->|监控数据| API_1
+
+    %% 样式定义
+    classDef server fill:#2196F3,color:#fff,stroke:#1976D2
+    classDef module fill:#4CAF50,color:#fff,stroke:#388E3C
+    classDef subModule fill:#FF9800,color:#fff,stroke:#F57C00
+    classDef client fill:#9C27B0,color:#fff,stroke:#7B1FA2
+    classDef database fill:#607D8B,color:#fff,stroke:#455A64
+
+    class CS_CORE,RS_CORE,DB_CORE,CLIENT_CORE server
+    class TM_1,PC_1,MON_1,API_1,FP_1,PS_1,ST_1,CACHE_1,PS_1,DM_1,SR_1,UI_1,DS_1,CM_1,BR_1 module
+    class TM_2,TM_3,PC_2,PC_3,MON_2,MON_3,API_2,API_3,FP_2,FP_3,PS_2,PS_3,ST_2,ST_3,CACHE_2,CACHE_3,PS_2,PS_3,DM_2,DM_3,SR_2,SR_3,UI_2,UI_3,DS_2,DS_3,CM_2,CM_3,BR_2,BR_3 subModule
+    class CLIENT_CORE client
+    class DB_CORE database
+```

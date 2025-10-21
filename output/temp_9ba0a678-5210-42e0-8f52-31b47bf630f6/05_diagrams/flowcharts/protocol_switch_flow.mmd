@@ -1,0 +1,114 @@
+```mermaid
+graph TD
+    subgraph "智能协议切换流程"
+        START[开始智能协议切换]
+
+        P1[P1：速度监测<br/>实时监测BitTorrent下载速度]
+
+        P2[P2：滑动窗口统计<br/>计算30-60秒时间窗口内平均速度]
+
+        P3[P3：阈值判断<br/>速度是否低于预设阈值100KB/s-1MB/s？]
+
+        P4[P4：进入冷却期<br/>设置60-300秒冷却时间防止频繁切换]
+
+        P5[P5：环境分析<br/>分析网络延迟、丢包率、带宽测试]
+
+        P6[P6：资源评估<br/>评估可用peer数量、服务器负载]
+
+        P7[P7：切换决策<br/>基于评分算法决定切换策略]
+
+        P8{切换程度决策<br/>完全切换HTTP还是部分补充？}
+
+        P9[P9：HTTP连接建立<br/>建立到中继服务器的HTTP连接]
+
+        P10[P10：数据块选择<br/>智能选择稀缺数据块]
+
+        P11[P11：Range请求下载<br/>支持分段下载和断点续传]
+
+        P12[P12：数据校验整合<br/>校验完整性并整合到BT管理系统]
+
+        P13[P13：状态监控<br/>持续监控下载速度和网络状况]
+
+        P14{BitTorrent速度是否恢复？<br/>速度是否恢复到正常水平？}
+
+        P15[P15：逐步减少HTTP使用<br/>优化成本和效率平衡]
+
+        P16[P16：完全切换回BitTorrent<br/>恢复纯P2P下载模式]
+
+        END[完成协议切换流程]
+    end
+
+    %% 主流程连接
+    START --> P1
+    P1 --> P2
+    P2 --> P3
+    P3 -->|是| P4
+    P3 -->|否| P1
+    P4 --> P5
+    P5 --> P6
+    P6 --> P7
+    P7 --> P8
+    P8 -->|完全切换| P9
+    P8 -->|部分补充| P9
+    P9 --> P10
+    P10 --> P11
+    P11 --> P12
+    P12 --> P13
+    P13 --> P14
+    P14 -->|是| P15
+    P14 -->|否| P13
+    P15 --> P16
+    P16 --> END
+
+    %% 异常处理流程
+    subgraph "异常处理机制"
+        E1[HTTP连接失败]
+        E2[自动重试机制]
+        E3[切换备用服务器]
+        E4[数据校验失败]
+        E5[重新下载数据块]
+        E6[网络环境突变]
+        E7[重新评估切换策略]
+    end
+
+    P9 -.->|连接失败| E1
+    E1 --> E2
+    E2 -->|重试失败| E3
+    E3 --> P9
+    P12 -.->|校验失败| E4
+    E4 --> E5
+    E5 --> P10
+    P13 -.->|网络突变| E6
+    E6 --> E7
+    E7 --> P5
+
+    %% 算法细节说明
+    subgraph "评分算法权重"
+        A1[当前下载速度权重：30%]
+        A2[历史速度趋势权重：20%]
+        A3[网络类型权重：15%]
+        A4[时间因素权重：10%]
+        A5[peer数量权重：15%]
+        A6[地理位置权重：10%]
+    end
+
+    P7 -.-> A1
+    A1 -.-> A2
+    A2 -.-> A3
+    A3 -.-> A4
+    A4 -.-> A5
+    A5 -.-> A6
+
+    %% 样式定义
+    classDef startEnd fill:#4CAF50,color:#fff,stroke:#388E3C
+    classDef process fill:#2196F3,color:#fff,stroke:#1976D2
+    classDef decision fill:#FF9800,color:#fff,stroke:#F57C00
+    classDef exception fill:#F44336,color:#fff,stroke:#D32F2F
+    classDef algorithm fill:#9C27B0,color:#fff,stroke:#7B1FA2
+
+    class START,END startEnd
+    class P1,P2,P4,P5,P6,P7,P9,P10,P11,P12,P13,P15,P16 process
+    class P3,P8,P14 decision
+    class E1,E2,E3,E4,E5,E6,E7 exception
+    class A1,A2,A3,A4,A5,A6 algorithm
+```

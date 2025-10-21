@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "google-patents-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@kunihiros/google-patents-mcp"
+      ],
+      "env": {
+        "SERPAPI_API_KEY": "xxxx"
+      }
+    },
+    "exa": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "exa-mcp-server"
+      ],
+      "env": {
+        "EXA_API_KEY": "xxxx"
+      }
+    }
+  }
+}
