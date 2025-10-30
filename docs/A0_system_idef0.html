@@ -1,0 +1,1567 @@
+<!DOCTYPE html><html><head>
+      <title>A0_system_idef0</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\yeats\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.19\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      <script type="text/javascript" src="file:///c:\Users\yeats\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.19\crossnote\dependencies\mermaid\mermaid.min.js" charset="UTF-8"></script>
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="專利撰寫自動化系統-idef0-架構建模">專利撰寫自動化系統 IDEF0 架構建模 </h1>
+<h2 id="文件資訊">文件資訊 </h2>
+<ul>
+<li><strong>專案名稱</strong>: 專利撰寫自動化系統 (Patent Writing Automation System)</li>
+<li><strong>建模方法</strong>: IDEF0 (Integration Definition for Function Modeling)</li>
+<li><strong>版本</strong>: v1.0</li>
+<li><strong>建立日期</strong>: 2025-10-30</li>
+<li><strong>作者</strong>: System Architect</li>
+</ul>
+<hr>
+<h2 id="目錄">目錄 </h2>
+<ol>
+<li><a href="#%E7%B3%BB%E7%B5%B1%E6%A6%82%E8%BF%B0">系統概述</a></li>
+<li><a href="#idef0-%E5%BB%BA%E6%A8%A1%E8%AA%AA%E6%98%8E">IDEF0 建模說明</a></li>
+<li><a href="#a-0-%E6%83%85%E5%A2%83%E5%9C%96-context-diagram">A-0: 情境圖 (Context Diagram)</a></li>
+<li><a href="#a0-%E9%A0%82%E5%B1%A4%E5%8A%9F%E8%83%BD%E5%9C%96">A0: 頂層功能圖</a></li>
+<li><a href="#a1-a8-%E5%AD%90%E5%8A%9F%E8%83%BD%E5%88%86%E8%A7%A3">A1-A8: 子功能分解</a></li>
+<li><a href="#icom-%E5%88%86%E6%9E%90%E8%A1%A8">ICOM 分析表</a></li>
+<li><a href="#%E7%B3%BB%E7%B5%B1%E5%AF%A6%E4%BD%9C%E5%BB%BA%E8%AD%B0">系統實作建議</a></li>
+</ol>
+<hr>
+<h2 id="系統概述">系統概述 </h2>
+<h3 id="目的">目的 </h3>
+<p>建立一個全自動化的專利申請文件撰寫系統，將現有的 Prompt-based 多 Agent 架構封裝為可獨立運行的產品，提供完整的使用者介面和自動化流程控制。</p>
+<h3 id="核心價值主張">核心價值主張 </h3>
+<ol>
+<li><strong>全自動化</strong>: 從上傳技術交底書到輸出完整專利文件，無需人工介入</li>
+<li><strong>模組化設計</strong>: 各功能模組獨立運作，易於維護和擴展</li>
+<li><strong>使用者友善</strong>: 提供直覺的 UI 介面和即時進度回饋</li>
+<li><strong>品質保證</strong>: 內建驗證機制，確保輸出符合專利法規範</li>
+</ol>
+<h3 id="系統邊界">系統邊界 </h3>
+<ul>
+<li><strong>輸入</strong>: 技術交底書 (DOCX 格式)</li>
+<li><strong>輸出</strong>: 完整專利申請文件 (Markdown + DOCX 格式)</li>
+<li><strong>使用者</strong>: 企業專利部門、專利事務所、研發人員</li>
+<li><strong>外部系統</strong>: Google Patents API, Exa Search API, Claude AI API</li>
+</ul>
+<hr>
+<h2 id="idef0-建模說明">IDEF0 建模說明 </h2>
+<h3 id="idef0-四要素-icom">IDEF0 四要素 (ICOM) </h3>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        Control (C) - 控制
+              ↓
+Input (I) → [活動] → Output (O)
+              ↑
+        Mechanism (M) - 機制
+</code></pre><ul>
+<li><strong>Input (I)</strong>: 輸入資料，被活動轉換或消耗</li>
+<li><strong>Control (C)</strong>: 控制條件，指導活動如何執行</li>
+<li><strong>Output (O)</strong>: 輸出產物，活動的結果</li>
+<li><strong>Mechanism (M)</strong>: 執行機制，執行活動的資源或工具</li>
+</ul>
+<h3 id="建模層級">建模層級 </h3>
+<ul>
+<li><strong>A-0</strong>: 情境圖 - 系統與外部環境的互動</li>
+<li><strong>A0</strong>: 頂層圖 - 系統主要功能</li>
+<li><strong>A1-A8</strong>: 詳細分解 - 各子功能的 ICOM 定義</li>
+</ul>
+<hr>
+<h2 id="a-0-情境圖-context-diagram">A-0: 情境圖 (Context Diagram) </h2>
+<h3 id="圖示">圖示 </h3>
+<div class="mermaid">---
+config:
+  layout: dagre
+---
+flowchart LR
+    Tech["📄 技術交底書&lt;br&gt;DOCX"] -- 輸入 --&gt; Core["專利文件&lt;br&gt;自動生成"]
+    User["👤 使用者&lt;br&gt;專利工程師"] -- 操作指令 --&gt; Core
+    PatentDB["🗄️ 專利資料庫&lt;br&gt;Google Patents"] -- 現有技術資料 --&gt; Core
+    AI["🤖 AI 服務&lt;br&gt;Claude API"] -- AI 生成能力 --&gt; Core
+    Core -- 專利文件 --&gt; Patent["📑 完整專利文件&lt;br&gt;MD + DOCX"]
+    Core -- 品質報告 --&gt; Report["📊 品質報告"]
+    Patent --&gt; User
+    Report --&gt; User
+    style Tech fill:#E8F5E9,stroke:#66BB6A,stroke-width:2px
+    style Core fill:#4A90E2,stroke:#2E5C8A,stroke-width:3px,color:#fff
+    style User fill:#FFE5B4,stroke:#CC9966,stroke-width:2px
+
+</div><h3 id="icom-分析">ICOM 分析 </h3>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>內容</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input (I)</strong></td>
+<td>技術交底書 (DOCX)</td>
+<td>包含技術背景、技術方案、實施例等內容</td>
+</tr>
+<tr>
+<td><strong>Control (C)</strong></td>
+<td>專利法規範、使用者指令、品質標準</td>
+<td>符合中國專利法、字數要求、格式規範</td>
+</tr>
+<tr>
+<td><strong>Output (O)</strong></td>
+<td>完整專利文件、品質報告</td>
+<td>Markdown + DOCX 格式，含摘要/權利要求/說明書/附圖</td>
+</tr>
+<tr>
+<td><strong>Mechanism (M)</strong></td>
+<td>AI 服務、專利資料庫、計算資源</td>
+<td>Claude AI API、Google Patents、伺服器</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="a0-頂層功能圖">A0: 頂層功能圖 </h2>
+<h3 id="功能分解">功能分解 </h3>
+<div class="mermaid">flowchart TB
+    Input["📄 技術交底書"] --&gt; A1
+
+    A1["A1 介面管理&lt;br/&gt;UI Management"] --&gt; A2["A2 文件解析&lt;br/&gt;Document Parsing"]
+    A2 --&gt; A3["A3 專利檢索&lt;br/&gt;Patent Search"]
+    A3 --&gt; A4["A4 大綱生成&lt;br/&gt;Outline Generation"]
+    A4 --&gt; A5["A5 內容撰寫&lt;br/&gt;Content Writing"]
+    A5 --&gt; A6["A6 圖表生成&lt;br/&gt;Diagram Generation"]
+    A6 --&gt; A7["A7 文件整合&lt;br/&gt;Document Merging"]
+    A7 --&gt; Output["📑 完整專利文件"]
+
+    A8["A8 流程控制&lt;br/&gt;Workflow Control"] -.監控.-&gt; A2
+    A8 -.監控.-&gt; A3
+    A8 -.監控.-&gt; A4
+    A8 -.監控.-&gt; A5
+    A8 -.監控.-&gt; A6
+    A8 -.監控.-&gt; A7
+
+    Control["⚙️ 控制:&lt;br/&gt;專利法規範&lt;br/&gt;品質標準&lt;br/&gt;使用者設定"] -.-&gt; A8
+    Mechanism["🔧 機制:&lt;br/&gt;AI API&lt;br/&gt;專利資料庫&lt;br/&gt;檔案系統"] -.-&gt; A8
+
+    style A1 fill:#FFF9C4,stroke:#F57C00,stroke-width:2px
+    style A2 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px
+    style A3 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px
+    style A4 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px
+    style A5 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px
+    style A6 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px
+    style A7 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px
+    style A8 fill:#FFCCBC,stroke:#D84315,stroke-width:2px
+</div><h3 id="a0-功能列表">A0 功能列表 </h3>
+<table>
+<thead>
+<tr>
+<th>功能編號</th>
+<th>功能名稱</th>
+<th>主要職責</th>
+<th>輸出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td>介面管理</td>
+<td>提供使用者互動介面，處理檔案上傳</td>
+<td>已上傳的 DOCX 檔案</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>文件解析</td>
+<td>解析技術交底書，提取結構化資訊</td>
+<td>parsed_info.json</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>專利檢索</td>
+<td>搜尋相似專利，分析現有技術</td>
+<td>similar_patents.json</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>大綱生成</td>
+<td>生成專利文件大綱結構</td>
+<td>patent_outline.md</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>內容撰寫</td>
+<td>撰寫摘要、權利要求、說明書</td>
+<td><a href="http://abstract.md">abstract.md</a>, <a href="http://claims.md">claims.md</a>, <a href="http://description.md">description.md</a></td>
+</tr>
+<tr>
+<td>A6</td>
+<td>圖表生成</td>
+<td>生成 Mermaid 流程圖、結構圖</td>
+<td>*.mmd 檔案</td>
+</tr>
+<tr>
+<td>A7</td>
+<td>文件整合</td>
+<td>合併所有內容為完整專利文件</td>
+<td>complete_patent.md, patent.docx</td>
+</tr>
+<tr>
+<td>A8</td>
+<td>流程控制</td>
+<td>協調各模組執行順序，錯誤處理</td>
+<td>執行日誌、品質報告</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="a1-a8-子功能分解">A1-A8: 子功能分解 </h2>
+<h3 id="a1-介面管理-ui-management">A1: 介面管理 (UI Management) </h3>
+<h4 id="功能描述">功能描述 </h4>
+<p>提供使用者友善的 Web 介面，處理檔案上傳、會話管理和進度顯示。</p>
+<h4 id="idef0-圖示">IDEF0 圖示 </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        [專利法規範, UI/UX 設計原則]
+                    ↓
+[使用者操作] → [A1: 介面管理] → [已上傳檔案, 會話 ID]
+                    ↑
+          [Streamlit 框架, 檔案系統]
+</code></pre><h4 id="icom-分析-1">ICOM 分析 </h4>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>項目</th>
+<th>詳細說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input</strong></td>
+<td>使用者操作</td>
+<td>檔案上傳、按鈕點擊、參數設定</td>
+</tr>
+<tr>
+<td></td>
+<td>系統狀態</td>
+<td>當前會話狀態、歷史記錄</td>
+</tr>
+<tr>
+<td><strong>Control</strong></td>
+<td>UI/UX 設計規範</td>
+<td>介面佈局、互動邏輯、錯誤提示</td>
+</tr>
+<tr>
+<td></td>
+<td>檔案驗證規則</td>
+<td>DOCX 格式檢查、大小限制 (&lt; 50MB)</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>已上傳檔案</td>
+<td>儲存至 <code>data/輸入.docx</code></td>
+</tr>
+<tr>
+<td></td>
+<td>會話 ID</td>
+<td>UUID 格式，用於建立工作目錄</td>
+</tr>
+<tr>
+<td></td>
+<td>介面回饋</td>
+<td>成功/錯誤訊息、進度條</td>
+</tr>
+<tr>
+<td><strong>Mechanism</strong></td>
+<td>Streamlit 框架</td>
+<td>Python Web 框架</td>
+</tr>
+<tr>
+<td></td>
+<td>檔案儲存系統</td>
+<td>本地檔案系統或雲端儲存</td>
+</tr>
+</tbody>
+</table>
+<h4 id="關鍵功能模組">關鍵功能模組 </h4>
+<ol>
+<li>
+<p><strong>檔案上傳模組</strong></p>
+<ul>
+<li>支援拖放上傳</li>
+<li>格式驗證 (僅接受 .docx)</li>
+<li>大小限制檢查</li>
+<li>重複檔案處理</li>
+</ul>
+</li>
+<li>
+<p><strong>會話管理模組</strong></p>
+<ul>
+<li>生成唯一 UUID</li>
+<li>建立工作目錄 <code>output/temp_[uuid]/</code></li>
+<li>歷史會話查詢</li>
+<li>會話恢復功能</li>
+</ul>
+</li>
+<li>
+<p><strong>進度顯示模組</strong></p>
+<ul>
+<li>即時進度條</li>
+<li>當前執行階段顯示</li>
+<li>日誌輸出視窗</li>
+<li>錯誤提示彈窗</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="a2-文件解析-document-parsing">A2: 文件解析 (Document Parsing) </h3>
+<h4 id="功能描述-1">功能描述 </h4>
+<p>使用 NLP 技術解析技術交底書，提取技術要素、關鍵術語和結構化資訊。</p>
+<h4 id="idef0-圖示-1">IDEF0 圖示 </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        [解析規則, JSON Schema 定義]
+                    ↓
+[DOCX 檔案] → [A2: 文件解析] → [parsed_info.json]
+                    ↓
+              [錯誤日誌]
+                    ↑
+        [Markitdown, Claude AI, NLP 工具]
+</code></pre><h4 id="icom-分析-2">ICOM 分析 </h4>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>項目</th>
+<th>詳細說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input</strong></td>
+<td>技術交底書</td>
+<td><code>data/輸入.docx</code></td>
+</tr>
+<tr>
+<td><strong>Control</strong></td>
+<td>解析規則</td>
+<td>章節識別、關鍵字提取規則</td>
+</tr>
+<tr>
+<td></td>
+<td>JSON Schema</td>
+<td>輸出格式定義 (技術背景、技術方案、優點等)</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>結構化資訊</td>
+<td><code>01_input/parsed_info.json</code></td>
+</tr>
+<tr>
+<td></td>
+<td>錯誤日誌</td>
+<td>解析失敗的章節或格式錯誤</td>
+</tr>
+<tr>
+<td><strong>Mechanism</strong></td>
+<td>Markitdown</td>
+<td>DOCX → Markdown 轉換</td>
+</tr>
+<tr>
+<td></td>
+<td>Claude AI</td>
+<td>語意理解和資訊提取</td>
+</tr>
+<tr>
+<td></td>
+<td>input-parser Agent</td>
+<td>專用解析 Agent</td>
+</tr>
+</tbody>
+</table>
+<h4 id="輸出-json-結構範例">輸出 JSON 結構範例 </h4>
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"metadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"專利名稱"</span><span class="token punctuation">,</span>
+    <span class="token property">"author"</span><span class="token operator">:</span> <span class="token string">"發明人"</span><span class="token punctuation">,</span>
+    <span class="token property">"date"</span><span class="token operator">:</span> <span class="token string">"2025-10-30"</span><span class="token punctuation">,</span>
+    <span class="token property">"uuid"</span><span class="token operator">:</span> <span class="token string">"abc123"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"technical_field"</span><span class="token operator">:</span> <span class="token string">"技術領域描述"</span><span class="token punctuation">,</span>
+  <span class="token property">"background"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"problems"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"現有問題1"</span><span class="token punctuation">,</span> <span class="token string">"現有問題2"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"prior_art"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"現有技術1"</span><span class="token punctuation">,</span> <span class="token string">"現有技術2"</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"technical_solution"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"core_idea"</span><span class="token operator">:</span> <span class="token string">"核心技術思想"</span><span class="token punctuation">,</span>
+    <span class="token property">"key_features"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"特徵1"</span><span class="token punctuation">,</span> <span class="token string">"特徵2"</span><span class="token punctuation">,</span> <span class="token string">"特徵3"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"implementation"</span><span class="token operator">:</span> <span class="token string">"實施方式概述"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"advantages"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"優點1"</span><span class="token punctuation">,</span> <span class="token string">"優點2"</span><span class="token punctuation">,</span> <span class="token string">"優點3"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"embodiments"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"實施例1"</span><span class="token punctuation">,</span>
+      <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"詳細描述"</span><span class="token punctuation">,</span>
+      <span class="token property">"figures"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"圖1"</span><span class="token punctuation">,</span> <span class="token string">"圖2"</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"key_terms"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"術語1"</span><span class="token punctuation">,</span> <span class="token string">"術語2"</span><span class="token punctuation">,</span> <span class="token string">"術語3"</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="a3-專利檢索-patent-search">A3: 專利檢索 (Patent Search) </h3>
+<h4 id="功能描述-2">功能描述 </h4>
+<p>透過 Google Patents API 檢索相似專利，分析現有技術，學習優秀的專利撰寫風格。</p>
+<h4 id="idef0-圖示-2">IDEF0 圖示 </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        [檢索策略, 相似度閾值]
+                    ↓
+[parsed_info.json] → [A3: 專利檢索] → [similar_patents.json]
+                    ↓                    ↓
+              [檢索日誌]          [prior_art_analysis.md]
+                    ↑
+        [Google Patents API, Exa Search]
+</code></pre><h4 id="icom-分析-3">ICOM 分析 </h4>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>項目</th>
+<th>詳細說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input</strong></td>
+<td>結構化技術資訊</td>
+<td><code>01_input/parsed_info.json</code></td>
+</tr>
+<tr>
+<td></td>
+<td>關鍵字列表</td>
+<td>從技術方案提取的關鍵術語</td>
+</tr>
+<tr>
+<td><strong>Control</strong></td>
+<td>檢索策略</td>
+<td>關鍵字組合、檢索範圍 (中國專利、近 5 年)</td>
+</tr>
+<tr>
+<td></td>
+<td>相似度閾值</td>
+<td>至少 70% 技術相關性</td>
+</tr>
+<tr>
+<td></td>
+<td>數量限制</td>
+<td>返回前 10 件最相似專利</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>相似專利列表</td>
+<td><code>02_research/similar_patents.json</code></td>
+</tr>
+<tr>
+<td></td>
+<td>現有技術分析</td>
+<td><code>02_research/prior_art_analysis.md</code></td>
+</tr>
+<tr>
+<td></td>
+<td>寫作風格參考</td>
+<td><code>02_research/writing_style_guide.md</code></td>
+</tr>
+<tr>
+<td><strong>Mechanism</strong></td>
+<td>Google Patents API</td>
+<td>透過 MCP google-patents-mcp 呼叫</td>
+</tr>
+<tr>
+<td></td>
+<td>Exa Search API</td>
+<td>補充網頁檢索</td>
+</tr>
+<tr>
+<td></td>
+<td>patent-searcher Agent</td>
+<td>專用檢索 Agent</td>
+</tr>
+</tbody>
+</table>
+<h4 id="輸出結構">輸出結構 </h4>
+<p><strong>similar_patents.json</strong>:</p>
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"search_query"</span><span class="token operator">:</span> <span class="token string">"關鍵字組合"</span><span class="token punctuation">,</span>
+  <span class="token property">"total_results"</span><span class="token operator">:</span> <span class="token number">156</span><span class="token punctuation">,</span>
+  <span class="token property">"selected_patents"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"patent_id"</span><span class="token operator">:</span> <span class="token string">"CN1234567A"</span><span class="token punctuation">,</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"專利標題"</span><span class="token punctuation">,</span>
+      <span class="token property">"abstract"</span><span class="token operator">:</span> <span class="token string">"專利摘要"</span><span class="token punctuation">,</span>
+      <span class="token property">"filing_date"</span><span class="token operator">:</span> <span class="token string">"2023-05-15"</span><span class="token punctuation">,</span>
+      <span class="token property">"relevance_score"</span><span class="token operator">:</span> <span class="token number">0.85</span><span class="token punctuation">,</span>
+      <span class="token property">"key_claims"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"權利要求1"</span><span class="token punctuation">,</span> <span class="token string">"權利要求2"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"technical_features"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"特徵A"</span><span class="token punctuation">,</span> <span class="token string">"特徵B"</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="a4-大綱生成-outline-generation">A4: 大綱生成 (Outline Generation) </h3>
+<h4 id="功能描述-3">功能描述 </h4>
+<p>基於解析的技術資訊和檢索的專利範例，生成符合專利法規範的文件大綱。</p>
+<h4 id="idef0-圖示-3">IDEF0 圖示 </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        [專利法格式要求, 章節規範]
+                    ↓
+[parsed_info.json, similar_patents.json] → [A4: 大綱生成] → [patent_outline.md]
+                    ↓
+              [structure_mapping.json]
+                    ↑
+              [outline-generator Agent]
+</code></pre><h4 id="icom-分析-4">ICOM 分析 </h4>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>項目</th>
+<th>詳細說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input</strong></td>
+<td>技術資訊</td>
+<td><code>01_input/parsed_info.json</code></td>
+</tr>
+<tr>
+<td></td>
+<td>相似專利</td>
+<td><code>02_research/similar_patents.json</code></td>
+</tr>
+<tr>
+<td><strong>Control</strong></td>
+<td>專利法章節規範</td>
+<td>發明名稱、摘要、權利要求、說明書、附圖</td>
+</tr>
+<tr>
+<td></td>
+<td>字數要求</td>
+<td>摘要 &lt; 300 字、說明書 &gt; 10000 字</td>
+</tr>
+<tr>
+<td></td>
+<td>邏輯完整性</td>
+<td>技術問題-技術方案-技術效果的邏輯鏈</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>專利大綱</td>
+<td><code>03_outline/patent_outline.md</code></td>
+</tr>
+<tr>
+<td></td>
+<td>結構映射</td>
+<td><code>03_outline/structure_mapping.json</code> (章節-內容對應)</td>
+</tr>
+<tr>
+<td><strong>Mechanism</strong></td>
+<td>outline-generator Agent</td>
+<td>專用大綱生成 Agent</td>
+</tr>
+<tr>
+<td></td>
+<td>Claude AI</td>
+<td>結構化規劃能力</td>
+</tr>
+</tbody>
+</table>
+<h4 id="大綱結構範例">大綱結構範例 </h4>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown markdown"><code><span class="token title important"><span class="token punctuation">#</span> 專利大綱</span>
+
+<span class="token title important"><span class="token punctuation">##</span> 1. 發明名稱</span>
+[基於技術核心的簡潔名稱]
+
+<span class="token title important"><span class="token punctuation">##</span> 2. 技術領域</span>
+[所屬技術領域描述]
+
+<span class="token title important"><span class="token punctuation">##</span> 3. 背景技術</span>
+<span class="token title important"><span class="token punctuation">###</span> 3.1 現有技術問題</span>
+<span class="token title important"><span class="token punctuation">###</span> 3.2 現有技術方案及缺陷</span>
+
+<span class="token title important"><span class="token punctuation">##</span> 4. 發明內容</span>
+<span class="token title important"><span class="token punctuation">###</span> 4.1 發明目的</span>
+<span class="token title important"><span class="token punctuation">###</span> 4.2 技術方案</span>
+<span class="token title important"><span class="token punctuation">###</span> 4.3 有益效果</span>
+
+<span class="token title important"><span class="token punctuation">##</span> 5. 附圖說明</span>
+<span class="token title important"><span class="token punctuation">###</span> 5.1 系統架構圖</span>
+<span class="token title important"><span class="token punctuation">###</span> 5.2 方法流程圖</span>
+<span class="token title important"><span class="token punctuation">###</span> 5.3 結構示意圖</span>
+
+<span class="token title important"><span class="token punctuation">##</span> 6. 具體實施方式</span>
+<span class="token title important"><span class="token punctuation">###</span> 6.1 實施例 1</span>
+<span class="token title important"><span class="token punctuation">###</span> 6.2 實施例 2</span>
+<span class="token title important"><span class="token punctuation">###</span> 6.3 變化例</span>
+
+<span class="token title important"><span class="token punctuation">##</span> 7. 權利要求書</span>
+<span class="token title important"><span class="token punctuation">###</span> 7.1 獨立權利要求</span>
+<span class="token title important"><span class="token punctuation">###</span> 7.2 從屬權利要求</span>
+
+<span class="token title important"><span class="token punctuation">##</span> 8. 摘要</span>
+[簡要技術方案描述]
+</code></pre><hr>
+<h3 id="a5-內容撰寫-content-writing">A5: 內容撰寫 (Content Writing) </h3>
+<h4 id="功能描述-4">功能描述 </h4>
+<p>根據大綱分別撰寫摘要、權利要求書和具體實施方式，確保邏輯連貫、術語一致。</p>
+<h4 id="idef0-圖示-4">IDEF0 圖示 </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        [專利撰寫規範, 字數要求, 術語詞典]
+                    ↓
+[patent_outline.md] → [A5: 內容撰寫] → [abstract.md, claims.md, description.md]
+                    ↓
+              [術語一致性報告]
+                    ↑
+    [abstract-writer, claims-writer, description-writer Agents]
+</code></pre><h4 id="icom-分析-5">ICOM 分析 </h4>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>項目</th>
+<th>詳細說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input</strong></td>
+<td>專利大綱</td>
+<td><code>03_outline/patent_outline.md</code></td>
+</tr>
+<tr>
+<td></td>
+<td>結構映射</td>
+<td><code>03_outline/structure_mapping.json</code></td>
+</tr>
+<tr>
+<td><strong>Control</strong></td>
+<td>專利撰寫規範</td>
+<td>摘要寫法、權利要求格式、說明書邏輯</td>
+</tr>
+<tr>
+<td></td>
+<td>字數要求</td>
+<td>摘要 &lt; 300 字、說明書 &gt; 10000 字</td>
+</tr>
+<tr>
+<td></td>
+<td>術語一致性</td>
+<td>全文使用統一術語，建立術語詞典</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>摘要</td>
+<td><code>04_content/abstract.md</code></td>
+</tr>
+<tr>
+<td></td>
+<td>權利要求書</td>
+<td><code>04_content/claims.md</code> (獨立+從屬權利要求)</td>
+</tr>
+<tr>
+<td></td>
+<td>具體實施方式</td>
+<td><code>04_content/description.md</code> (&gt;10000 字)</td>
+</tr>
+<tr>
+<td></td>
+<td>術語詞典</td>
+<td><code>04_content/terminology.json</code></td>
+</tr>
+<tr>
+<td><strong>Mechanism</strong></td>
+<td>abstract-writer Agent</td>
+<td>摘要撰寫專家</td>
+</tr>
+<tr>
+<td></td>
+<td>claims-writer Agent</td>
+<td>權利要求撰寫專家</td>
+</tr>
+<tr>
+<td></td>
+<td>description-writer Agent</td>
+<td>說明書撰寫專家</td>
+</tr>
+<tr>
+<td></td>
+<td>Claude AI</td>
+<td>長文本生成能力</td>
+</tr>
+</tbody>
+</table>
+<h4 id="執行流程">執行流程 </h4>
+<div class="mermaid">sequenceDiagram
+    participant Control as A8 流程控制
+    participant A5 as A5 內容撰寫
+    participant Abstract as abstract-writer
+    participant Claims as claims-writer
+    participant Desc as description-writer
+    participant FS as 檔案系統
+
+    Control-&gt;&gt;A5: 啟動內容撰寫
+    A5-&gt;&gt;FS: 讀取 patent_outline.md
+
+    A5-&gt;&gt;Abstract: 撰寫摘要
+    Abstract-&gt;&gt;FS: 輸出 abstract.md
+
+    A5-&gt;&gt;Claims: 撰寫權利要求 (依賴摘要)
+    Claims-&gt;&gt;FS: 輸出 claims.md
+
+    A5-&gt;&gt;Desc: 撰寫說明書 (依賴權利要求)
+    Desc-&gt;&gt;FS: 輸出 description.md
+
+    A5-&gt;&gt;A5: 術語一致性檢查
+    A5-&gt;&gt;FS: 輸出 terminology.json
+    A5-&gt;&gt;Control: 完成,返回檔案路徑
+</div><hr>
+<h3 id="a6-圖表生成-diagram-generation">A6: 圖表生成 (Diagram Generation) </h3>
+<h4 id="功能描述-5">功能描述 </h4>
+<p>基於技術方案自動生成 Mermaid 格式的流程圖、結構圖和時序圖。</p>
+<h4 id="idef0-圖示-5">IDEF0 圖示 </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        [圖表類型規範, Mermaid 語法規則]
+                    ↓
+[description.md, structure_mapping.json] → [A6: 圖表生成] → [*.mmd 圖表檔案]
+                    ↓
+              [圖表索引]
+                    ↑
+              [diagram-generator Agent]
+</code></pre><h4 id="icom-分析-6">ICOM 分析 </h4>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>項目</th>
+<th>詳細說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input</strong></td>
+<td>具體實施方式</td>
+<td><code>04_content/description.md</code></td>
+</tr>
+<tr>
+<td></td>
+<td>結構映射</td>
+<td><code>03_outline/structure_mapping.json</code></td>
+</tr>
+<tr>
+<td><strong>Control</strong></td>
+<td>圖表類型規範</td>
+<td>流程圖、結構圖、時序圖、類別圖</td>
+</tr>
+<tr>
+<td></td>
+<td>Mermaid 語法</td>
+<td>符合 Mermaid 官方語法</td>
+</tr>
+<tr>
+<td></td>
+<td>圖表數量</td>
+<td>至少 3 張圖,最多 10 張圖</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>流程圖</td>
+<td><code>05_diagrams/flowcharts/*.mmd</code></td>
+</tr>
+<tr>
+<td></td>
+<td>結構圖</td>
+<td><code>05_diagrams/structural_diagrams/*.mmd</code></td>
+</tr>
+<tr>
+<td></td>
+<td>時序圖</td>
+<td><code>05_diagrams/sequence_diagrams/*.mmd</code></td>
+</tr>
+<tr>
+<td></td>
+<td>圖表索引</td>
+<td><code>05_diagrams/diagram_index.json</code></td>
+</tr>
+<tr>
+<td><strong>Mechanism</strong></td>
+<td>diagram-generator Agent</td>
+<td>圖表生成專家</td>
+</tr>
+<tr>
+<td></td>
+<td>Mermaid 驗證器</td>
+<td>語法正確性檢查</td>
+</tr>
+</tbody>
+</table>
+<h4 id="輸出範例">輸出範例 </h4>
+<p><strong>system_architecture.mmd</strong>:</p>
+<div class="mermaid">flowchart TB
+    A[使用者介面] --&gt; B[控制模組]
+    B --&gt; C[數據處理模組]
+    B --&gt; D[AI 推理模組]
+    C --&gt; E[儲存模組]
+    D --&gt; E
+    E --&gt; F[輸出模組]
+</div><hr>
+<h3 id="a7-文件整合-document-merging">A7: 文件整合 (Document Merging) </h3>
+<h4 id="功能描述-6">功能描述 </h4>
+<p>將所有撰寫完成的章節和圖表整合為完整的專利文件,並轉換為 DOCX 格式。</p>
+<h4 id="idef0-圖示-6">IDEF0 圖示 </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        [文件格式規範, 排版規則]
+                    ↓
+[所有 MD 檔案 + 圖表] → [A7: 文件整合] → [complete_patent.md, patent.docx]
+                    ↓
+              [summary_report.md]
+                    ↑
+        [markdown-merger Agent, Pandoc]
+</code></pre><h4 id="icom-分析-7">ICOM 分析 </h4>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>項目</th>
+<th>詳細說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input</strong></td>
+<td>摘要</td>
+<td><code>04_content/abstract.md</code></td>
+</tr>
+<tr>
+<td></td>
+<td>權利要求書</td>
+<td><code>04_content/claims.md</code></td>
+</tr>
+<tr>
+<td></td>
+<td>說明書</td>
+<td><code>04_content/description.md</code></td>
+</tr>
+<tr>
+<td></td>
+<td>圖表檔案</td>
+<td><code>05_diagrams/**/*.mmd</code></td>
+</tr>
+<tr>
+<td><strong>Control</strong></td>
+<td>文件格式規範</td>
+<td>章節順序、編號格式、頁碼</td>
+</tr>
+<tr>
+<td></td>
+<td>排版規則</td>
+<td>字體、行距、圖表位置</td>
+</tr>
+<tr>
+<td></td>
+<td>品質檢查清單</td>
+<td>字數、術語、格式完整性</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>完整 Markdown</td>
+<td><code>06_final/complete_patent.md</code></td>
+</tr>
+<tr>
+<td></td>
+<td>Word 文件</td>
+<td><code>06_final/patent_application.docx</code></td>
+</tr>
+<tr>
+<td></td>
+<td>總結報告</td>
+<td><code>06_final/summary_report.md</code> (字數統計、品質指標)</td>
+</tr>
+<tr>
+<td><strong>Mechanism</strong></td>
+<td>markdown-merger Agent</td>
+<td>文件整合專家</td>
+</tr>
+<tr>
+<td></td>
+<td>Pandoc</td>
+<td>Markdown → DOCX 轉換工具</td>
+</tr>
+<tr>
+<td></td>
+<td>品質檢查模組</td>
+<td>自動化驗證</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="a8-流程控制-workflow-control">A8: 流程控制 (Workflow Control) </h3>
+<h4 id="功能描述-7">功能描述 </h4>
+<p>協調所有模組的執行順序,監控進度,處理錯誤,確保整個流程自動化運行。</p>
+<h4 id="idef0-圖示-7">IDEF0 圖示 </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        [執行策略, 重試策略, 品質標準]
+                    ↓
+[啟動指令] → [A8: 流程控制] → [執行狀態, 進度報告]
+              ↓     ↓     ↓
+          [A2] [A3] [A4] ... [A7]
+              ↑     ↑     ↑
+      [狀態監控, 錯誤處理, 日誌記錄]
+                    ↑
+          [工作流引擎, 檔案系統]
+</code></pre><h4 id="icom-分析-8">ICOM 分析 </h4>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>項目</th>
+<th>詳細說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input</strong></td>
+<td>使用者啟動指令</td>
+<td>包含會話 ID、檔案路徑</td>
+</tr>
+<tr>
+<td></td>
+<td>各模組狀態回報</td>
+<td>成功/失敗/進行中</td>
+</tr>
+<tr>
+<td><strong>Control</strong></td>
+<td>執行策略</td>
+<td>嚴格順序執行: A1→A2→A3→A4→A5→A6→A7</td>
+</tr>
+<tr>
+<td></td>
+<td>重試策略</td>
+<td>失敗最多重試 3 次,記錄錯誤</td>
+</tr>
+<tr>
+<td></td>
+<td>品質標準</td>
+<td>每個階段輸出必須通過驗證</td>
+</tr>
+<tr>
+<td></td>
+<td>超時設定</td>
+<td>單一模組最長執行時間 (如 A5 最多 30 分鐘)</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>執行狀態</td>
+<td>當前階段、完成百分比</td>
+</tr>
+<tr>
+<td></td>
+<td>進度報告</td>
+<td>實時更新到 UI</td>
+</tr>
+<tr>
+<td></td>
+<td>錯誤日誌</td>
+<td><code>metadata/agent_logs/[module]_error.log</code></td>
+</tr>
+<tr>
+<td></td>
+<td>品質報告</td>
+<td><code>metadata/quality_check.json</code></td>
+</tr>
+<tr>
+<td><strong>Mechanism</strong></td>
+<td>工作流引擎</td>
+<td>狀態機管理、事件驅動</td>
+</tr>
+<tr>
+<td></td>
+<td>主 Agent (Lead Agent)</td>
+<td>專案經理 Agent</td>
+</tr>
+<tr>
+<td></td>
+<td>檔案系統</td>
+<td>模組間通訊媒介</td>
+</tr>
+<tr>
+<td></td>
+<td>監控模組</td>
+<td>資源使用、執行時間追蹤</td>
+</tr>
+</tbody>
+</table>
+<h4 id="狀態機設計">狀態機設計 </h4>
+<div class="mermaid">stateDiagram-v2
+    [*] --&gt; Initialized: 使用者啟動
+    Initialized --&gt; Parsing: A2 文件解析
+    Parsing --&gt; Searching: 成功
+    Parsing --&gt; Error: 失敗 (重試)
+    Searching --&gt; Outlining: A3 專利檢索成功
+    Searching --&gt; Error: 失敗
+    Outlining --&gt; Writing: A4 大綱生成成功
+    Outlining --&gt; Error: 失敗
+    Writing --&gt; Diagramming: A5 內容撰寫成功
+    Writing --&gt; Error: 失敗
+    Diagramming --&gt; Merging: A6 圖表生成成功
+    Diagramming --&gt; Error: 失敗
+    Merging --&gt; Completed: A7 文件整合成功
+    Merging --&gt; Error: 失敗
+    Error --&gt; Parsing: 重試 A2
+    Error --&gt; Searching: 重試 A3
+    Error --&gt; [*]: 超過重試次數
+    Completed --&gt; [*]: 輸出完整文件
+</div><hr>
+<h2 id="icom-分析表">ICOM 分析表 </h2>
+<h3 id="完整系統-icom-總覽">完整系統 ICOM 總覽 </h3>
+<table>
+<thead>
+<tr>
+<th>模組</th>
+<th>Input (輸入)</th>
+<th>Control (控制)</th>
+<th>Output (輸出)</th>
+<th>Mechanism (機制)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A1: 介面管理</strong></td>
+<td>使用者操作、系統狀態</td>
+<td>UI/UX 規範、檔案驗證規則</td>
+<td>已上傳檔案、會話 ID、介面回饋</td>
+<td>Streamlit、檔案系統</td>
+</tr>
+<tr>
+<td><strong>A2: 文件解析</strong></td>
+<td>DOCX 檔案</td>
+<td>解析規則、JSON Schema</td>
+<td>parsed_info.json、錯誤日誌</td>
+<td>Markitdown、Claude AI、input-parser Agent</td>
+</tr>
+<tr>
+<td><strong>A3: 專利檢索</strong></td>
+<td>parsed_info.json、關鍵字</td>
+<td>檢索策略、相似度閾值、數量限制</td>
+<td>similar_patents.json、prior_art_analysis.md</td>
+<td>Google Patents API、patent-searcher Agent</td>
+</tr>
+<tr>
+<td><strong>A4: 大綱生成</strong></td>
+<td>parsed_info.json、similar_patents.json</td>
+<td>專利法章節規範、字數要求、邏輯完整性</td>
+<td>patent_outline.md、structure_mapping.json</td>
+<td>outline-generator Agent、Claude AI</td>
+</tr>
+<tr>
+<td><strong>A5: 內容撰寫</strong></td>
+<td>patent_outline.md、structure_mapping.json</td>
+<td>專利撰寫規範、字數要求、術語一致性</td>
+<td><a href="http://abstract.md">abstract.md</a>、<a href="http://claims.md">claims.md</a>、<a href="http://description.md">description.md</a>、terminology.json</td>
+<td>abstract/claims/description-writer Agents</td>
+</tr>
+<tr>
+<td><strong>A6: 圖表生成</strong></td>
+<td><a href="http://description.md">description.md</a>、structure_mapping.json</td>
+<td>圖表類型規範、Mermaid 語法、數量限制</td>
+<td>*.mmd 圖表檔案、diagram_index.json</td>
+<td>diagram-generator Agent、Mermaid 驗證器</td>
+</tr>
+<tr>
+<td><strong>A7: 文件整合</strong></td>
+<td>所有 MD 檔案、圖表檔案</td>
+<td>文件格式規範、排版規則、品質檢查清單</td>
+<td>complete_patent.md、patent.docx、summary_report.md</td>
+<td>markdown-merger Agent、Pandoc、品質檢查模組</td>
+</tr>
+<tr>
+<td><strong>A8: 流程控制</strong></td>
+<td>啟動指令、各模組狀態</td>
+<td>執行策略、重試策略、品質標準、超時設定</td>
+<td>執行狀態、進度報告、錯誤日誌、品質報告</td>
+<td>工作流引擎、Lead Agent、監控模組</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="系統實作建議">系統實作建議 </h2>
+<h3 id="技術棧選擇">技術棧選擇 </h3>
+<h4 id="前端-a1-介面管理">前端 (A1: 介面管理) </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 技術選型</span>
+<span class="token operator">-</span> Streamlit <span class="token number">3</span><span class="token punctuation">.</span>x<span class="token punctuation">:</span> Web 框架
+<span class="token operator">-</span> streamlit<span class="token operator">-</span>aggrid<span class="token punctuation">:</span> 進階表格顯示
+<span class="token operator">-</span> streamlit<span class="token operator">-</span>lottie<span class="token punctuation">:</span> 動畫效果
+</code></pre><h4 id="後端-a2-a7-核心功能">後端 (A2-A7: 核心功能) </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 技術選型</span>
+<span class="token operator">-</span> Python <span class="token number">3.10</span><span class="token operator">+</span><span class="token punctuation">:</span> 主要開發語言
+<span class="token operator">-</span> FastAPI<span class="token punctuation">:</span> API 服務 <span class="token punctuation">(</span>可選<span class="token punctuation">,</span>用於微服務架構<span class="token punctuation">)</span>
+<span class="token operator">-</span> Celery<span class="token punctuation">:</span> 非同步任務佇列 <span class="token punctuation">(</span>處理長時間運行的 Agent<span class="token punctuation">)</span>
+<span class="token operator">-</span> Redis<span class="token punctuation">:</span> 快取和訊息佇列
+</code></pre><h4 id="ai-整合-所有模組">AI 整合 (所有模組) </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 技術選型</span>
+<span class="token operator">-</span> anthropic<span class="token operator">-</span>sdk<span class="token punctuation">:</span> Claude AI Python SDK
+<span class="token operator">-</span> langchain<span class="token punctuation">:</span> Agent 框架和 Prompt 管理
+<span class="token operator">-</span> chromadb<span class="token punctuation">:</span> 向量資料庫 <span class="token punctuation">(</span>用於相似專利檢索<span class="token punctuation">)</span>
+</code></pre><h4 id="工作流引擎-a8-流程控制">工作流引擎 (A8: 流程控制) </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 技術選型選項</span>
+<span class="token comment"># 選項 1: 輕量級 - 使用狀態機</span>
+<span class="token operator">-</span> python<span class="token operator">-</span>statemachine<span class="token punctuation">:</span> 狀態機實作
+
+<span class="token comment"># 選項 2: 企業級 - 使用工作流引擎</span>
+<span class="token operator">-</span> Apache Airflow<span class="token punctuation">:</span> DAG 工作流編排
+<span class="token operator">-</span> Prefect<span class="token punctuation">:</span> 現代化工作流引擎
+<span class="token operator">-</span> Temporal<span class="token punctuation">:</span> 分散式工作流引擎
+</code></pre><h4 id="檔案處理">檔案處理 </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 技術選型</span>
+<span class="token operator">-</span> markitdown<span class="token punctuation">:</span> DOCX → Markdown
+<span class="token operator">-</span> pypandoc<span class="token punctuation">:</span> Markdown → DOCX
+<span class="token operator">-</span> python<span class="token operator">-</span>docx<span class="token punctuation">:</span> DOCX 直接操作
+<span class="token operator">-</span> mermaid<span class="token operator">-</span>cli<span class="token punctuation">:</span> Mermaid 圖表渲染
+</code></pre><hr>
+<h3 id="架構模式建議">架構模式建議 </h3>
+<h4 id="選項-1-單體式架構-monolithic">選項 1: 單體式架構 (Monolithic) </h4>
+<p><strong>適用場景</strong>: 小型團隊、快速原型、單機部署</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>┌─────────────────────────────────────────┐
+│         Streamlit Web 應用              │
+│  (包含所有 A1-A8 模組在同一進程)         │
+├─────────────────────────────────────────┤
+│  檔案系統 (output/temp_[uuid]/)          │
+├─────────────────────────────────────────┤
+│  外部 API: Claude AI, Google Patents    │
+└─────────────────────────────────────────┘
+</code></pre><p><strong>優點</strong>:</p>
+<ul>
+<li>開發簡單,易於除錯</li>
+<li>部署容易,單一 Docker 容器</li>
+<li>適合現有 Prompt-based 架構</li>
+</ul>
+<p><strong>缺點</strong>:</p>
+<ul>
+<li>擴展性有限</li>
+<li>長時間運行可能阻塞 UI</li>
+</ul>
+<hr>
+<h4 id="選項-2-微服務架構-microservices">選項 2: 微服務架構 (Microservices) </h4>
+<p><strong>適用場景</strong>: 大型團隊、高併發、雲端部署</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>                ┌─────────────────┐
+                │  API Gateway    │
+                └────────┬────────┘
+                         │
+        ┌────────────────┼────────────────┐
+        │                │                │
+┌───────▼──────┐ ┌──────▼──────┐ ┌──────▼──────┐
+│ UI Service   │ │ Parse Svc   │ │ Search Svc  │
+│   (A1)       │ │   (A2)      │ │   (A3)      │
+└──────────────┘ └─────────────┘ └─────────────┘
+        │                │                │
+        └────────────────┼────────────────┘
+                         │
+                ┌────────▼────────┐
+                │  Workflow Svc   │
+                │     (A8)        │
+                └─────────────────┘
+                         │
+                ┌────────▼────────┐
+                │  Shared Storage │
+                │  (MinIO/S3)     │
+                └─────────────────┘
+</code></pre><p><strong>優點</strong>:</p>
+<ul>
+<li>高可擴展性</li>
+<li>模組獨立部署</li>
+<li>適合多團隊開發</li>
+</ul>
+<p><strong>缺點</strong>:</p>
+<ul>
+<li>複雜度高</li>
+<li>需要 DevOps 基礎設施</li>
+</ul>
+<hr>
+<h4 id="選項-3-混合式架構-推薦">選項 3: 混合式架構 (推薦) </h4>
+<p><strong>結合單體式和微服務的優點</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>┌──────────────────────────────────────────┐
+│         Streamlit Web 應用 (A1)           │
+└─────────────────┬────────────────────────┘
+                  │ HTTP API
+┌─────────────────▼────────────────────────┐
+│     工作流控制器 (A8) + FastAPI           │
+│  - 任務佇列 (Celery)                      │
+│  - 狀態管理 (Redis)                       │
+└───┬──────┬──────┬──────┬──────┬──────┬───┘
+    │      │      │      │      │      │
+┌───▼──┐┌──▼──┐┌──▼──┐┌──▼──┐┌──▼──┐┌─▼──┐
+│ A2   ││ A3  ││ A4  ││ A5  ││ A6  ││ A7 │
+│Worker││Work ││Work ││Work ││Work ││Wk  │
+└──────┘└─────┘└─────┘└─────┘└─────┘└────┘
+    │      │      │      │      │      │
+    └──────┴──────┴──────┴──────┴──────┘
+                  │
+          ┌───────▼────────┐
+          │  檔案系統 / S3  │
+          └────────────────┘
+</code></pre><p><strong>優點</strong>:</p>
+<ul>
+<li>UI 和後端分離,非同步處理</li>
+<li>可擴展性好</li>
+<li>複雜度適中</li>
+</ul>
+<p><strong>實作建議</strong>:</p>
+<ol>
+<li><strong>階段 1</strong>: 實作單體式原型,驗證 Agent 流程</li>
+<li><strong>階段 2</strong>: 改造為混合式架構,增加非同步處理</li>
+<li><strong>階段 3</strong>: 根據需求考慮拆分為微服務</li>
+</ol>
+<hr>
+<h3 id="資料流設計">資料流設計 </h3>
+<h4 id="檔案系統結構">檔案系統結構 </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>output/
+└── temp_[uuid]/
+    ├── 00_input/
+    │   ├── raw_document.docx
+    │   └── parsed_info.json
+    ├── 01_research/
+    │   ├── similar_patents.json
+    │   └── prior_art_analysis.md
+    ├── 02_outline/
+    │   ├── patent_outline.md
+    │   └── structure_mapping.json
+    ├── 03_content/
+    │   ├── abstract.md
+    │   ├── claims.md
+    │   ├── description.md
+    │   └── terminology.json
+    ├── 04_diagrams/
+    │   ├── flowcharts/*.mmd
+    │   ├── structural_diagrams/*.mmd
+    │   └── sequence_diagrams/*.mmd
+    ├── 05_final/
+    │   ├── complete_patent.md
+    │   ├── patent_application.docx
+    │   └── summary_report.md
+    └── metadata/
+        ├── project_info.json
+        ├── workflow_state.json
+        ├── quality_check.json
+        └── agent_logs/
+            ├── a2_parsing.log
+            ├── a3_search.log
+            └── ...
+</code></pre><hr>
+<h3 id="api-介面設計">API 介面設計 </h3>
+<h4 id="rest-api-端點-fastapi">REST API 端點 (FastAPI) </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># A1: 介面管理</span>
+POST   <span class="token operator">/</span>api<span class="token operator">/</span>v1<span class="token operator">/</span>session<span class="token operator">/</span>create          <span class="token comment"># 建立新會話</span>
+GET    <span class="token operator">/</span>api<span class="token operator">/</span>v1<span class="token operator">/</span>session<span class="token operator">/</span><span class="token punctuation">{</span>uuid<span class="token punctuation">}</span><span class="token operator">/</span>status   <span class="token comment"># 查詢會話狀態</span>
+DELETE <span class="token operator">/</span>api<span class="token operator">/</span>v1<span class="token operator">/</span>session<span class="token operator">/</span><span class="token punctuation">{</span>uuid<span class="token punctuation">}</span>          <span class="token comment"># 刪除會話</span>
+
+<span class="token comment"># A2-A7: 核心功能</span>
+POST   <span class="token operator">/</span>api<span class="token operator">/</span>v1<span class="token operator">/</span>workflow<span class="token operator">/</span>start          <span class="token comment"># 啟動工作流</span>
+GET    <span class="token operator">/</span>api<span class="token operator">/</span>v1<span class="token operator">/</span>workflow<span class="token operator">/</span><span class="token punctuation">{</span>uuid<span class="token punctuation">}</span><span class="token operator">/</span>progress <span class="token comment"># 查詢進度</span>
+POST   <span class="token operator">/</span>api<span class="token operator">/</span>v1<span class="token operator">/</span>workflow<span class="token operator">/</span><span class="token punctuation">{</span>uuid<span class="token punctuation">}</span><span class="token operator">/</span>stop    <span class="token comment"># 中止工作流</span>
+
+<span class="token comment"># 檔案管理</span>
+POST   <span class="token operator">/</span>api<span class="token operator">/</span>v1<span class="token operator">/</span>files<span class="token operator">/</span>upload            <span class="token comment"># 上傳檔案</span>
+GET    <span class="token operator">/</span>api<span class="token operator">/</span>v1<span class="token operator">/</span>files<span class="token operator">/</span><span class="token punctuation">{</span>uuid<span class="token punctuation">}</span><span class="token operator">/</span>download   <span class="token comment"># 下載結果檔案</span>
+</code></pre><h4 id="websocket-端點-即時更新">WebSocket 端點 (即時更新) </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>WS     <span class="token operator">/</span>api<span class="token operator">/</span>v1<span class="token operator">/</span>workflow<span class="token operator">/</span><span class="token punctuation">{</span>uuid<span class="token punctuation">}</span><span class="token operator">/</span>stream  <span class="token comment"># 即時日誌串流</span>
+</code></pre><hr>
+<h3 id="錯誤處理策略">錯誤處理策略 </h3>
+<h4 id="錯誤分類">錯誤分類 </h4>
+<table>
+<thead>
+<tr>
+<th>錯誤類型</th>
+<th>處理策略</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>輸入錯誤</strong></td>
+<td>提示使用者修正,不重試</td>
+<td>檔案格式錯誤、內容不完整</td>
+</tr>
+<tr>
+<td><strong>網路錯誤</strong></td>
+<td>自動重試 (指數退避)</td>
+<td>API 請求超時、連線失敗</td>
+</tr>
+<tr>
+<td><strong>AI 錯誤</strong></td>
+<td>重試 (最多 3 次),記錄 Prompt</td>
+<td>Token 超限、生成格式錯誤</td>
+</tr>
+<tr>
+<td><strong>系統錯誤</strong></td>
+<td>記錄日誌,通知管理員</td>
+<td>記憶體不足、磁碟滿</td>
+</tr>
+</tbody>
+</table>
+<h4 id="重試策略">重試策略 </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 指數退避重試</span>
+<span class="token keyword keyword-def">def</span> <span class="token function">retry_with_backoff</span><span class="token punctuation">(</span>func<span class="token punctuation">,</span> max_retries<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>max_retries<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-try">try</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span> func<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-except">except</span> Exception <span class="token keyword keyword-as">as</span> e<span class="token punctuation">:</span>
+            wait_time <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">**</span> i  <span class="token comment"># 1s, 2s, 4s</span>
+            time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>wait_time<span class="token punctuation">)</span>
+            <span class="token keyword keyword-if">if</span> i <span class="token operator">==</span> max_retries <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">:</span>
+                <span class="token keyword keyword-raise">raise</span>
+</code></pre><hr>
+<h3 id="品質保證機制">品質保證機制 </h3>
+<h4 id="自動化檢查清單">自動化檢查清單 </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>quality_checks <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">"A2_parsing"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"parsed_info.json 格式正確"</span><span class="token punctuation">,</span>
+        <span class="token string">"包含必要欄位: technical_field, background, solution"</span><span class="token punctuation">,</span>
+        <span class="token string">"關鍵術語數量 &gt;= 5"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"A3_search"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"找到相似專利 &gt;= 3 件"</span><span class="token punctuation">,</span>
+        <span class="token string">"相似度最高分 &gt;= 0.7"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"A5_writing"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"摘要字數 &lt; 300"</span><span class="token punctuation">,</span>
+        <span class="token string">"說明書字數 &gt; 10000"</span><span class="token punctuation">,</span>
+        <span class="token string">"術語一致性 = 100%"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"A6_diagrams"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"圖表數量 &gt;= 3"</span><span class="token punctuation">,</span>
+        <span class="token string">"所有 .mmd 檔案語法正確"</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="部署方案">部署方案 </h3>
+<h4 id="docker-compose-部署-推薦">Docker Compose 部署 (推薦) </h4>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token comment"># docker-compose.yml</span>
+<span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3.8'</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token comment"># Web UI</span>
+  <span class="token key atrule">streamlit</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span> .
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"8501:8501"</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> CLAUDE_API_KEY=$<span class="token punctuation">{</span>CLAUDE_API_KEY<span class="token punctuation">}</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./output<span class="token punctuation">:</span>/workspace/output
+
+  <span class="token comment"># 工作流控制器 + API</span>
+  <span class="token key atrule">api</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span> ./api
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"8000:8000"</span>
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> redis
+      <span class="token punctuation">-</span> postgres
+
+  <span class="token comment"># Celery Worker (處理 A2-A7)</span>
+  <span class="token key atrule">worker</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span> ./api
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> celery <span class="token punctuation">-</span>A app.celery worker
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> redis
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> CLAUDE_API_KEY=$<span class="token punctuation">{</span>CLAUDE_API_KEY<span class="token punctuation">}</span>
+
+  <span class="token comment"># Redis (任務佇列)</span>
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>7<span class="token punctuation">-</span>alpine
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"6379:6379"</span>
+
+  <span class="token comment"># PostgreSQL (會話狀態)</span>
+  <span class="token key atrule">postgres</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> postgres<span class="token punctuation">:</span>15<span class="token punctuation">-</span>alpine
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">POSTGRES_DB</span><span class="token punctuation">:</span> patent_db
+      <span class="token key atrule">POSTGRES_PASSWORD</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span>DB_PASSWORD<span class="token punctuation">}</span>
+</code></pre><h4 id="啟動指令">啟動指令 </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment"># 1. 設定環境變數</span>
+<span class="token function">cp</span> .env.example .env
+<span class="token comment"># 編輯 .env,填入 API Keys</span>
+
+<span class="token comment"># 2. 啟動服務</span>
+<span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span>
+
+<span class="token comment"># 3. 查看日誌</span>
+<span class="token function">docker-compose</span> logs <span class="token parameter variable">-f</span>
+
+<span class="token comment"># 4. 停止服務</span>
+<span class="token function">docker-compose</span> down
+</code></pre><hr>
+<h3 id="監控和可觀測性">監控和可觀測性 </h3>
+<h4 id="關鍵指標">關鍵指標 </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>metrics <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">"業務指標"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"每日完成專利數量"</span><span class="token punctuation">,</span>
+        <span class="token string">"平均處理時間 (分鐘)"</span><span class="token punctuation">,</span>
+        <span class="token string">"成功率 (%)"</span><span class="token punctuation">,</span>
+        <span class="token string">"使用者滿意度"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"技術指標"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"API 回應時間"</span><span class="token punctuation">,</span>
+        <span class="token string">"Claude AI Token 使用量"</span><span class="token punctuation">,</span>
+        <span class="token string">"錯誤率 (按模組)"</span><span class="token punctuation">,</span>
+        <span class="token string">"重試次數"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"資源指標"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"CPU 使用率"</span><span class="token punctuation">,</span>
+        <span class="token string">"記憶體使用率"</span><span class="token punctuation">,</span>
+        <span class="token string">"磁碟空間"</span><span class="token punctuation">,</span>
+        <span class="token string">"網路流量"</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="日誌設計">日誌設計 </h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 結構化日誌格式</span>
+<span class="token punctuation">{</span>
+    <span class="token string">"timestamp"</span><span class="token punctuation">:</span> <span class="token string">"2025-10-30T12:34:56Z"</span><span class="token punctuation">,</span>
+    <span class="token string">"level"</span><span class="token punctuation">:</span> <span class="token string">"INFO"</span><span class="token punctuation">,</span>
+    <span class="token string">"module"</span><span class="token punctuation">:</span> <span class="token string">"A5_content_writing"</span><span class="token punctuation">,</span>
+    <span class="token string">"session_id"</span><span class="token punctuation">:</span> <span class="token string">"abc123"</span><span class="token punctuation">,</span>
+    <span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"開始撰寫說明書"</span><span class="token punctuation">,</span>
+    <span class="token string">"context"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"outline_length"</span><span class="token punctuation">:</span> <span class="token number">1234</span><span class="token punctuation">,</span>
+        <span class="token string">"target_word_count"</span><span class="token punctuation">:</span> <span class="token number">10000</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h2 id="總結">總結 </h2>
+<h3 id="系統特點">系統特點 </h3>
+<p>✅ <strong>模組化</strong>: 8 個獨立功能模組,清晰的 ICOM 定義<br>
+✅ <strong>自動化</strong>: 端到端自動流程,最小化人工介入<br>
+✅ <strong>可擴展</strong>: 支援單體式 → 混合式 → 微服務演進<br>
+✅ <strong>可監控</strong>: 完整的日誌、指標和錯誤處理<br>
+✅ <strong>可靠性</strong>: 重試機制、品質檢查、狀態管理</p>
+<h3 id="開發路線圖">開發路線圖 </h3>
+<p><strong>Phase 1: MVP (4-6 週)</strong></p>
+<ul>
+<li>✅ 實作 A1 (Streamlit UI)</li>
+<li>✅ 整合現有 Prompt-based Agents (A2-A7)</li>
+<li>✅ 簡單的流程控制 (A8)</li>
+<li>✅ 檔案系統資料流</li>
+</ul>
+<p><strong>Phase 2: 產品化 (6-8 週)</strong></p>
+<ul>
+<li>⬜ 改造為混合式架構</li>
+<li>⬜ 增加非同步處理 (Celery)</li>
+<li>⬜ 完善錯誤處理和重試機制</li>
+<li>⬜ 品質檢查自動化</li>
+</ul>
+<p><strong>Phase 3: 企業化 (8-12 週)</strong></p>
+<ul>
+<li>⬜ 使用者管理和權限控制</li>
+<li>⬜ 雲端部署和 CI/CD</li>
+<li>⬜ 監控和告警系統</li>
+<li>⬜ API 文件和 SDK</li>
+</ul>
+<hr>
+<h2 id="附錄">附錄 </h2>
+<h3 id="術語表">術語表 </h3>
+<table>
+<thead>
+<tr>
+<th>術語</th>
+<th>英文</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IDEF0</td>
+<td>Integration Definition</td>
+<td>功能建模方法</td>
+</tr>
+<tr>
+<td>ICOM</td>
+<td>Input-Control-Output-Mechanism</td>
+<td>IDEF0 四要素</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>智能代理</td>
+<td>具有特定功能的 AI 實體</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>Model Context Protocol</td>
+<td>AI 工具整合協議</td>
+</tr>
+<tr>
+<td>UUID</td>
+<td>Universally Unique Identifier</td>
+<td>全域唯一識別碼</td>
+</tr>
+</tbody>
+</table>
+<h3 id="參考資料">參考資料 </h3>
+<ol>
+<li>IDEF0 標準: NIST FIPS PUB 183</li>
+<li>Claude AI API 文件: <a href="https://docs.anthropic.com">https://docs.anthropic.com</a></li>
+<li>Streamlit 文件: <a href="https://docs.streamlit.io">https://docs.streamlit.io</a></li>
+<li>Mermaid 圖表語法: <a href="https://mermaid.js.org">https://mermaid.js.org</a></li>
+</ol>
+<hr>
+<p><strong>文件結束</strong></p>
+
+      </div>
+      
+      
+    
+    
+    <script type="module">
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = "default"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+} else {
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+}
+</script>
+    
+    
+    
+  
+    </body></html>
