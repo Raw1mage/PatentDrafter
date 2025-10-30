@@ -190,7 +190,7 @@
 #### 圖1：基於混合協議的大規模文件分發方法流程圖
 
 ```mermaid
-graph TD
+flowchart TD
     A[S101：接收用戶發送的文件分發指令] --> B[S102：創建分發任務和中繼任務並持久化至數據庫]
     B --> C[S103：下發分發任務至多個客戶端，下發中繼任務至多箇中繼服務器]
     C --> D[S104：中繼服務器從數據源服務器拉取目標文件]
@@ -212,7 +212,7 @@ graph TD
 #### 圖2：基於混合協議的大規模文件分發系統架構圖
 
 ```mermaid
-graph TB
+flowchart TB
     subgraph "用戶層"
         U[用戶0]
     end
@@ -276,7 +276,7 @@ graph TB
 #### 圖3：基於混合協議的大規模文件分發裝置結構框圖
 
 ```mermaid
-graph TB
+flowchart TB
     subgraph "大規模文件分發裝置 100"
         subgraph "核心模塊"
             RM[接收模塊 101]

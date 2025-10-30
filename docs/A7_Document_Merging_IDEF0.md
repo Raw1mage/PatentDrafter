@@ -26,30 +26,21 @@
 ## A7-0: 情境圖
 
 ```mermaid
-graph LR
-    subgraph External["外部實體"]
-        A6["A6: 圖表生成"]
-        User["👤 使用者"]
-    end
-
-    subgraph A7_System["A7-0: 文件整合系統"]
-        A7["文件整合<br/>Document Merging"]
-    end
-
-    subgraph Controls["控制條件"]
-        FormatRules["格式規範"]
-        Layout["排版規則"]
-        Quality["品質標準"]
-    end
-
-    subgraph Outputs["系統輸出"]
-        MD["📄 complete_patent.md"]
-        DOCX["📄 patent_application.docx"]
-        Report["📊 summary_report.md"]
-    end
+flowchart LR
+    A6["A6: 圖表生成"]
+    User["👤 使用者"]
+    A7["文件整合<br/>Document Merging"]
+    FormatRules["格式規範"]
+    Layout["排版規則"]
+    Quality["品質標準"]
+    MD["📄 complete_patent.md"]
+    DOCX["📄 patent_application.docx"]
+    Report["📊 summary_report.md"]
 
     A6 -->|所有內容文件| A7
-    Controls -.控制.-> A7
+    FormatRules -.控制.-> A7
+    Layout -.控制.-> A7
+    Quality -.控制.-> A7
 
     A7 -->|Markdown| MD
     A7 -->|Word 文件| DOCX
@@ -67,13 +58,11 @@ graph LR
 ## A7: 頂層功能分解
 
 ```mermaid
-graph TB
-    subgraph A7["A7: 文件整合"]
-        A71["A7.1<br/>章節內容合併<br/>Content Merging"]
-        A72["A7.2<br/>圖表插入與引用<br/>Diagram Insertion"]
-        A73["A7.3<br/>格式化與排版<br/>Formatting"]
-        A74["A7.4<br/>多格式輸出<br/>Format Conversion"]
-    end
+flowchart TB
+    A71["A7.1<br/>章節內容合併<br/>Content Merging"]
+    A72["A7.2<br/>圖表插入與引用<br/>Diagram Insertion"]
+    A73["A7.3<br/>格式化與排版<br/>Formatting"]
+    A74["A7.4<br/>多格式輸出<br/>Format Conversion"]
 
     Input["📋 所有內容文件"] --> A71
     A71 --> Merged["📄 合併內容"]
@@ -88,7 +77,10 @@ graph TB
     A74 --> MD["📄 .md"]
     A74 --> DOCX["📄 .docx"]
 
-    style A7 fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
+    style A71 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A72 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A73 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A74 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
 ```
 
 ---

@@ -47,30 +47,21 @@
 ### 圖示
 
 ```mermaid
-graph LR
-    subgraph External["外部實體"]
-        A1["A1: 介面管理"]
-        A3["A3: 專利檢索"]
-        FS["📁 檔案系統"]
-    end
-
-    subgraph A2_System["A2-0: 文件解析系統"]
-        A2["文件解析<br/>Document Parsing"]
-    end
-
-    subgraph Controls["控制條件"]
-        ParseRules["解析規則"]
-        Schema["JSON Schema"]
-        QualityRules["品質標準"]
-    end
-
-    subgraph Outputs["系統輸出"]
-        ParsedJSON["📊 parsed_info.json"]
-        ErrorLog["📋 錯誤日誌"]
-    end
+flowchart LR
+    A1["A1: 介面管理"]
+    A3["A3: 專利檢索"]
+    FS["📁 檔案系統"]
+    A2["文件解析<br/>Document Parsing"]
+    ParseRules["解析規則"]
+    Schema["JSON Schema"]
+    QualityRules["品質標準"]
+    ParsedJSON["📊 parsed_info.json"]
+    ErrorLog["📋 錯誤日誌"]
 
     A1 -->|raw_document.docx| A2
-    Controls -.控制.-> A2
+    ParseRules -.控制.-> A2
+    Schema -.控制.-> A2
+    QualityRules -.控制.-> A2
 
     A2 -->|結構化資料| ParsedJSON
     A2 -->|解析錯誤| ErrorLog
@@ -103,13 +94,11 @@ graph LR
 ### 功能分解圖
 
 ```mermaid
-graph TB
-    subgraph A2["A2: 文件解析"]
-        A21["A2.1<br/>DOCX 格式轉換<br/>Format Conversion"]
-        A22["A2.2<br/>章節識別與分割<br/>Section Identification"]
-        A23["A2.3<br/>關鍵資訊提取<br/>Information Extraction"]
-        A24["A2.4<br/>結構化資料生成<br/>Data Structuring"]
-    end
+flowchart TB
+    A21["A2.1<br/>DOCX 格式轉換<br/>Format Conversion"]
+    A22["A2.2<br/>章節識別與分割<br/>Section Identification"]
+    A23["A2.3<br/>關鍵資訊提取<br/>Information Extraction"]
+    A24["A2.4<br/>結構化資料生成<br/>Data Structuring"]
 
     Input["📄 DOCX 檔案"] --> A21
     A21 --> Markdown["📝 Markdown 文本"]
@@ -123,10 +112,16 @@ graph TB
     RawInfo --> A24
     A24 --> JSON["📋 parsed_info.json"]
 
-    Control["⚙️ 控制:<br/>解析規則<br/>Schema 定義"] -.-> A2
-    Mechanism["🔧 機制:<br/>Markitdown<br/>Claude AI"] -.-> A2
+    Control["⚙️ 控制:<br/>解析規則<br/>Schema 定義"] -.-> A21
+    Control -.-> A22
+    Control -.-> A23
+    Control -.-> A24
 
-    style A2 fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
+    Mechanism["🔧 機制:<br/>Markitdown<br/>Claude AI"] -.-> A21
+    Mechanism -.-> A22
+    Mechanism -.-> A23
+    Mechanism -.-> A24
+
     style A21 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
     style A22 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
     style A23 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px

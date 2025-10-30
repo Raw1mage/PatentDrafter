@@ -68,31 +68,23 @@ Input (I) → [活動] → Output (O)
 ### 圖示
 
 ```mermaid
+---
+config:
+  layout: dagre
+---
 flowchart LR
-    User["👤 使用者<br/>專利工程師"]
-    Tech["📄 技術交底書<br/>DOCX"]
-    PatentDB["🗄️ 專利資料庫<br/>Google Patents"]
-    AI["🤖 AI 服務<br/>Claude API"]
-
-    Core["專利文件<br/>自動生成"]
-
-    Patent["📑 完整專利文件<br/>MD + DOCX"]
-    Report["📊 品質報告"]
-
-    Tech -->|輸入| Core
-    User -->|操作指令| Core
-    PatentDB -->|現有技術資料| Core
-    AI -->|AI 生成能力| Core
-
-    Core -->|專利文件| Patent
-    Core -->|品質報告| Report
-
+    Tech["📄 技術交底書<br>DOCX"] -- 輸入 --> Core["專利文件<br>自動生成"]
+    User["👤 使用者<br>專利工程師"] -- 操作指令 --> Core
+    PatentDB["🗄️ 專利資料庫<br>Google Patents"] -- 現有技術資料 --> Core
+    AI["🤖 AI 服務<br>Claude API"] -- AI 生成能力 --> Core
+    Core -- 專利文件 --> Patent["📑 完整專利文件<br>MD + DOCX"]
+    Core -- 品質報告 --> Report["📊 品質報告"]
     Patent --> User
     Report --> User
-
+    style Tech fill:#E8F5E9,stroke:#66BB6A,stroke-width:2px
     style Core fill:#4A90E2,stroke:#2E5C8A,stroke-width:3px,color:#fff
     style User fill:#FFE5B4,stroke:#CC9966,stroke-width:2px
-    style Tech fill:#E8F5E9,stroke:#66BB6A,stroke-width:2px
+
 ```
 
 ### ICOM 分析

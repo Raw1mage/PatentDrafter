@@ -26,30 +26,21 @@
 ## A4-0: 情境圖
 
 ```mermaid
-graph LR
-    subgraph External["外部實體"]
-        A3["A3: 專利檢索"]
-        A5["A5: 內容撰寫"]
-    end
-
-    subgraph A4_System["A4-0: 大綱生成系統"]
-        A4["大綱生成<br/>Outline Generation"]
-    end
-
-    subgraph Controls["控制條件"]
-        PatentLaw["專利法章節規範"]
-        WordReq["字數要求"]
-        LogicRules["邏輯完整性規則"]
-    end
-
-    subgraph Outputs["系統輸出"]
-        Outline["📋 patent_outline.md"]
-        Mapping["🗺️ structure_mapping.json"]
-    end
+flowchart LR
+    A3["A3: 專利檢索"]
+    A5["A5: 內容撰寫"]
+    A4["大綱生成<br/>Outline Generation"]
+    PatentLaw["專利法章節規範"]
+    WordReq["字數要求"]
+    LogicRules["邏輯完整性規則"]
+    Outline["📋 patent_outline.md"]
+    Mapping["🗺️ structure_mapping.json"]
 
     A3 -->|similar_patents.json| A4
     A3 -->|prior_art_analysis.md| A4
-    Controls -.控制.-> A4
+    PatentLaw -.控制.-> A4
+    WordReq -.控制.-> A4
+    LogicRules -.控制.-> A4
 
     A4 -->|大綱文檔| Outline
     A4 -->|結構映射| Mapping
@@ -65,13 +56,11 @@ graph LR
 ## A4: 頂層功能分解
 
 ```mermaid
-graph TB
-    subgraph A4["A4: 大綱生成"]
-        A41["A4.1<br/>章節結構規劃<br/>Section Planning"]
-        A42["A4.2<br/>內容要點提取<br/>Content Extraction"]
-        A43["A4.3<br/>邏輯鏈構建<br/>Logic Chain Building"]
-        A44["A4.4<br/>大綱優化與驗證<br/>Optimization & Validation"]
-    end
+flowchart TB
+    A41["A4.1<br/>章節結構規劃<br/>Section Planning"]
+    A42["A4.2<br/>內容要點提取<br/>Content Extraction"]
+    A43["A4.3<br/>邏輯鏈構建<br/>Logic Chain Building"]
+    A44["A4.4<br/>大綱優化與驗證<br/>Optimization & Validation"]
 
     Input["📊 技術資訊 + 專利範例"] --> A41
     A41 --> Structure["📑 章節架構"]
@@ -85,7 +74,10 @@ graph TB
     LogicChain --> A44
     A44 --> Output["📋 patent_outline.md"]
 
-    style A4 fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
+    style A41 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A42 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A43 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A44 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
 ```
 
 ---

@@ -47,34 +47,25 @@
 ### 圖示
 
 ```mermaid
-graph LR
-    subgraph External["外部實體"]
-        User["👤 使用者<br/>(專利工程師)"]
-        FS["📁 檔案系統<br/>(本地/雲端)"]
-        A8["⚙️ A8 流程控制器"]
-    end
-
-    subgraph A1_System["A1-0: 介面管理系統"]
-        A1["介面管理<br/>UI Management"]
-    end
-
-    subgraph Controls["控制條件"]
-        UIRules["UI/UX 設計規範"]
-        FileRules["檔案驗證規則"]
-        SessionRules["會話管理規則"]
-    end
-
-    subgraph Outputs["系統輸出"]
-        UploadedFile["📄 已上傳檔案"]
-        SessionID["🆔 會話 UUID"]
-        Feedback["💬 介面回饋"]
-    end
+flowchart LR
+    User["👤 使用者<br/>(專利工程師)"]
+    FS["📁 檔案系統<br/>(本地/雲端)"]
+    A8["⚙️ A8 流程控制器"]
+    A1["介面管理<br/>UI Management"]
+    UIRules["UI/UX 設計規範"]
+    FileRules["檔案驗證規則"]
+    SessionRules["會話管理規則"]
+    UploadedFile["📄 已上傳檔案"]
+    SessionID["🆔 會話 UUID"]
+    Feedback["💬 介面回饋"]
 
     User -->|檔案上傳操作| A1
     User -->|參數設定| A1
     User -->|查詢請求| A1
 
-    Controls -.控制.-> A1
+    UIRules -.控制.-> A1
+    FileRules -.控制.-> A1
+    SessionRules -.控制.-> A1
 
     A1 -->|檔案資料| UploadedFile
     A1 -->|會話識別碼| SessionID
@@ -115,13 +106,11 @@ graph LR
 ### 功能分解圖
 
 ```mermaid
-graph TB
-    subgraph A1["A1: 介面管理"]
-        A11["A1.1<br/>檔案上傳處理<br/>File Upload Handler"]
-        A12["A1.2<br/>會話管理<br/>Session Manager"]
-        A13["A1.3<br/>進度顯示<br/>Progress Display"]
-        A14["A1.4<br/>使用者互動處理<br/>User Interaction Handler"]
-    end
+flowchart TB
+    A11["A1.1<br/>檔案上傳處理<br/>File Upload Handler"]
+    A12["A1.2<br/>會話管理<br/>Session Manager"]
+    A13["A1.3<br/>進度顯示<br/>Progress Display"]
+    A14["A1.4<br/>使用者互動處理<br/>User Interaction Handler"]
 
     Input["📄 使用者輸入"] --> A11
     A11 --> Validated["✅ 已驗證檔案"]
@@ -137,10 +126,16 @@ graph TB
     A14 -.處理.-> A13
     A14 --> UIFeedback["💬 介面回饋"]
 
-    Control["⚙️ 控制:<br/>UI 規範<br/>驗證規則"] -.-> A1
-    Mechanism["🔧 機制:<br/>Streamlit<br/>檔案系統"] -.-> A1
+    Control["⚙️ 控制:<br/>UI 規範<br/>驗證規則"] -.-> A11
+    Control -.-> A12
+    Control -.-> A13
+    Control -.-> A14
 
-    style A1 fill:#FFF3E0,stroke:#F57C00,stroke-width:2px
+    Mechanism["🔧 機制:<br/>Streamlit<br/>檔案系統"] -.-> A11
+    Mechanism -.-> A12
+    Mechanism -.-> A13
+    Mechanism -.-> A14
+
     style A11 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px
     style A12 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px
     style A13 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px

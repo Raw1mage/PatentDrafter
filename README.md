@@ -25,61 +25,42 @@ output/temp_9ba0a678-5210-42e0-8f52-31b47bf630f6 為示例輸出
 ### Workflow 設計
 
 ```mermaid
-graph TD
-    subgraph "輸入與準備階段"
-        A(用戶輸入: 技術資料) --> B[Input Parser: 解析關鍵技術點];
-        B --> C[Patent Searcher: 檢索現有技術];
-        subgraph "工具節點"
-            %% --- 增加的工具節點 ---
-            C --> C1[工具: 專利搜索]
-            C --> C2[工具: 論文搜索]
-            %% --- 結束 ---
-        end
-        B --> D[Outline Generator: 生成專利大綱];
-        
-        %% --- 增加循環 ---
-        C1 -- "重複" --> C;
-        C2 -- "重複" --> C;
-    end
+flowchart TD
+    A(用戶輸入: 技術資料) --> B[Input Parser: 解析關鍵技術點]
+    B --> C[Patent Searcher: 檢索現有技術]
+    C --> C1[工具: 專利搜索]
+    C --> C2[工具: 論文搜索]
+    C1 -- "重複" --> C
+    C2 -- "重複" --> C
+    B --> D[Outline Generator: 生成專利大綱]
 
-    subgraph "核心撰寫與輸出"
-        E[Claims Writer: 撰寫權利要求]
-        F[Description Writer: 撰寫具體實施方式]
-        
-        subgraph "並行生成"
-            direction LR
-            G[Diagram Generator: 生成附圖/流程圖]
-            H[Abstract Writer: 撰寫摘要]
-        end
+    E[Claims Writer: 撰寫權利要求]
+    F[Description Writer: 撰寫具體實施方式]
+    G[Diagram Generator: 生成附圖/流程圖]
+    H[Abstract Writer: 撰寫摘要]
+    I[Markdown Merger: 合併所有部分]
+    J(輸出: 完整專利草稿.md)
 
-        I[Markdown Merger: 合併所有部分]
-        J(輸出: 完整專利草稿.md)
+    E --> F
+    F --> G
+    F -- "提供素材" --> H
+    E -- "提供保護範圍" --> H
 
-        %% --- 內部流向 ---
-        E --> F
-        F --> G
-        F -- "提供素材" --> H
-        E -- "提供保護範圍" --> H
-        
-        %% --- 匯合 ---
-        E --> I
-        F --> I
-        G --> I
-        H --> I
-        
-        I --> J
-    end
+    E --> I
+    F --> I
+    G --> I
+    H --> I
 
-    %% --- 跨子圖鏈接 ---
-    C -- "提供參考資料" --> E;
-    D -- "提供文檔結構" --> E;
-    C -- "提供參考資料" --> F;
+    I --> J
 
-    %% 樣式
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px;
-    classDef input fill:#E0F7FA,stroke:#00796B;
-    classDef output fill:#FFECB3,stroke:#FFA000;
-    
-    class A,J input;
-    class B,C,D,E,F,G,H,I,C1,C2 output;
+    C -- "提供參考資料" --> E
+    D -- "提供文檔結構" --> E
+    C -- "提供參考資料" --> F
+
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef input fill:#E0F7FA,stroke:#00796B
+    classDef output fill:#FFECB3,stroke:#FFA000
+
+    class A,J input
+    class B,C,D,E,F,G,H,I,C1,C2 output
 ```

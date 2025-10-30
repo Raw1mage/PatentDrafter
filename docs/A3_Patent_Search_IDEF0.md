@@ -27,32 +27,23 @@
 ## A3-0: 情境圖
 
 ```mermaid
-graph LR
-    subgraph External["外部實體"]
-        A2["A2: 文件解析"]
-        A4["A4: 大綱生成"]
-        GooglePatents["🔍 Google Patents API"]
-        ExaSearch["🌐 Exa Search API"]
-    end
-
-    subgraph A3_System["A3-0: 專利檢索系統"]
-        A3["專利檢索<br/>Patent Search"]
-    end
-
-    subgraph Controls["控制條件"]
-        SearchStrategy["檢索策略"]
-        SimilarityThreshold["相似度閾值"]
-        Filters["篩選條件"]
-    end
-
-    subgraph Outputs["系統輸出"]
-        SimilarPatents["📊 similar_patents.json"]
-        Analysis["📋 prior_art_analysis.md"]
-        StyleGuide["📖 writing_style_guide.md"]
-    end
+flowchart LR
+    A2["A2: 文件解析"]
+    A4["A4: 大綱生成"]
+    GooglePatents["🔍 Google Patents API"]
+    ExaSearch["🌐 Exa Search API"]
+    A3["專利檢索<br/>Patent Search"]
+    SearchStrategy["檢索策略"]
+    SimilarityThreshold["相似度閾值"]
+    Filters["篩選條件"]
+    SimilarPatents["📊 similar_patents.json"]
+    Analysis["📋 prior_art_analysis.md"]
+    StyleGuide["📖 writing_style_guide.md"]
 
     A2 -->|parsed_info.json| A3
-    Controls -.控制.-> A3
+    SearchStrategy -.控制.-> A3
+    SimilarityThreshold -.控制.-> A3
+    Filters -.控制.-> A3
 
     A3 <-->|API 請求| GooglePatents
     A3 <-->|API 請求| ExaSearch
@@ -91,13 +82,11 @@ graph LR
 ## A3: 頂層功能分解
 
 ```mermaid
-graph TB
-    subgraph A3["A3: 專利檢索"]
-        A31["A3.1<br/>關鍵字提取與擴展<br/>Keyword Extraction"]
-        A32["A3.2<br/>專利資料庫檢索<br/>Database Search"]
-        A33["A3.3<br/>相似度計算與排序<br/>Similarity Ranking"]
-        A34["A3.4<br/>現有技術分析<br/>Prior Art Analysis"]
-    end
+flowchart TB
+    A31["A3.1<br/>關鍵字提取與擴展<br/>Keyword Extraction"]
+    A32["A3.2<br/>專利資料庫檢索<br/>Database Search"]
+    A33["A3.3<br/>相似度計算與排序<br/>Similarity Ranking"]
+    A34["A3.4<br/>現有技術分析<br/>Prior Art Analysis"]
 
     Input["📊 parsed_info.json"] --> A31
     A31 --> Keywords["🔑 關鍵字集合"]
@@ -112,10 +101,16 @@ graph TB
     A34 --> Output1["📊 similar_patents.json"]
     A34 --> Output2["📋 prior_art_analysis.md"]
 
-    Control["⚙️ 控制"] -.-> A3
-    Mechanism["🔧 機制:<br/>APIs, Claude AI"] -.-> A3
+    Control["⚙️ 控制"] -.-> A31
+    Control -.-> A32
+    Control -.-> A33
+    Control -.-> A34
 
-    style A3 fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
+    Mechanism["🔧 機制:<br/>APIs, Claude AI"] -.-> A31
+    Mechanism -.-> A32
+    Mechanism -.-> A33
+    Mechanism -.-> A34
+
     style A31 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
     style A32 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
     style A33 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px

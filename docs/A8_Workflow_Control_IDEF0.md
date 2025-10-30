@@ -26,39 +26,27 @@
 ## A8-0: 情境圖
 
 ```mermaid
-graph LR
-    subgraph External["外部實體"]
-        A1["A1: 介面管理"]
-        User["👤 使用者"]
-    end
-
-    subgraph A8_System["A8-0: 流程控制系統"]
-        A8["流程控制<br/>Workflow Control"]
-    end
-
-    subgraph Modules["受控模組"]
-        A2["A2: 文件解析"]
-        A3["A3: 專利檢索"]
-        A4["A4: 大綱生成"]
-        A5["A5: 內容撰寫"]
-        A6["A6: 圖表生成"]
-        A7["A7: 文件整合"]
-    end
-
-    subgraph Controls["控制條件"]
-        Strategy["執行策略"]
-        RetryPolicy["重試策略"]
-        Timeout["超時設定"]
-    end
-
-    subgraph Outputs["系統輸出"]
-        Status["📊 執行狀態"]
-        Logs["📋 執行日誌"]
-        Report["📄 品質報告"]
-    end
+flowchart LR
+    A1["A1: 介面管理"]
+    User["👤 使用者"]
+    A8["流程控制<br/>Workflow Control"]
+    A2["A2: 文件解析"]
+    A3["A3: 專利檢索"]
+    A4["A4: 大綱生成"]
+    A5["A5: 內容撰寫"]
+    A6["A6: 圖表生成"]
+    A7["A7: 文件整合"]
+    Strategy["執行策略"]
+    RetryPolicy["重試策略"]
+    Timeout["超時設定"]
+    Status["📊 執行狀態"]
+    Logs["📋 執行日誌"]
+    Report["📄 品質報告"]
 
     A1 -->|啟動指令| A8
-    Controls -.控制.-> A8
+    Strategy -.控制.-> A8
+    RetryPolicy -.控制.-> A8
+    Timeout -.控制.-> A8
 
     A8 -.調度.-> A2
     A8 -.調度.-> A3
@@ -90,13 +78,11 @@ graph LR
 ## A8: 頂層功能分解
 
 ```mermaid
-graph TB
-    subgraph A8["A8: 流程控制"]
-        A81["A8.1<br/>任務調度與排程<br/>Task Scheduling"]
-        A82["A8.2<br/>狀態監控<br/>Status Monitoring"]
-        A83["A8.3<br/>錯誤處理與重試<br/>Error Handling"]
-        A84["A8.4<br/>日誌記錄與報告<br/>Logging & Reporting"]
-    end
+flowchart TB
+    A81["A8.1<br/>任務調度與排程<br/>Task Scheduling"]
+    A82["A8.2<br/>狀態監控<br/>Status Monitoring"]
+    A83["A8.3<br/>錯誤處理與重試<br/>Error Handling"]
+    A84["A8.4<br/>日誌記錄與報告<br/>Logging & Reporting"]
 
     Input["🚀 啟動指令"] --> A81
     A81 -.調度.-> Modules["A2-A7 模組"]
@@ -115,7 +101,10 @@ graph TB
     Decision -->|是| A81
     Decision -->|否| End["❌ 終止"]
 
-    style A8 fill:#FFE5E5,stroke:#D84315,stroke-width:2px
+    style A81 fill:#FFCCBC,stroke:#D84315,stroke-width:2px
+    style A82 fill:#FFCCBC,stroke:#D84315,stroke-width:2px
+    style A83 fill:#FFCCBC,stroke:#D84315,stroke-width:2px
+    style A84 fill:#FFCCBC,stroke:#D84315,stroke-width:2px
 ```
 
 ---

@@ -26,31 +26,22 @@
 ## A5-0: 情境圖
 
 ```mermaid
-graph LR
-    subgraph External["外部實體"]
-        A4["A4: 大綱生成"]
-        A6["A6: 圖表生成"]
-    end
-
-    subgraph A5_System["A5-0: 內容撰寫系統"]
-        A5["內容撰寫<br/>Content Writing"]
-    end
-
-    subgraph Controls["控制條件"]
-        PatentRules["專利撰寫規範"]
-        WordCount["字數要求"]
-        Terminology["術語一致性"]
-    end
-
-    subgraph Outputs["系統輸出"]
-        Abstract["📄 abstract.md"]
-        Claims["📋 claims.md"]
-        Description["📖 description.md"]
-        Terms["📚 terminology.json"]
-    end
+flowchart LR
+    A4["A4: 大綱生成"]
+    A6["A6: 圖表生成"]
+    A5["內容撰寫<br/>Content Writing"]
+    PatentRules["專利撰寫規範"]
+    WordCount["字數要求"]
+    Terminology["術語一致性"]
+    Abstract["📄 abstract.md"]
+    Claims["📋 claims.md"]
+    Description["📖 description.md"]
+    Terms["📚 terminology.json"]
 
     A4 -->|patent_outline.md| A5
-    Controls -.控制.-> A5
+    PatentRules -.控制.-> A5
+    WordCount -.控制.-> A5
+    Terminology -.控制.-> A5
 
     A5 -->|摘要| Abstract
     A5 -->|權利要求| Claims
@@ -69,13 +60,11 @@ graph LR
 ## A5: 頂層功能分解
 
 ```mermaid
-graph TB
-    subgraph A5["A5: 內容撰寫"]
-        A51["A5.1<br/>摘要撰寫<br/>Abstract Writing"]
-        A52["A5.2<br/>權利要求書撰寫<br/>Claims Writing"]
-        A53["A5.3<br/>具體實施方式撰寫<br/>Description Writing"]
-        A54["A5.4<br/>術語一致性管理<br/>Terminology Management"]
-    end
+flowchart TB
+    A51["A5.1<br/>摘要撰寫<br/>Abstract Writing"]
+    A52["A5.2<br/>權利要求書撰寫<br/>Claims Writing"]
+    A53["A5.3<br/>具體實施方式撰寫<br/>Description Writing"]
+    A54["A5.4<br/>術語一致性管理<br/>Terminology Management"]
 
     Input["📋 patent_outline.md"] --> A51
     A51 --> AbstractDoc["📄 abstract.md"]
@@ -91,7 +80,10 @@ graph TB
     A53 -.提取術語.-> A54
     A54 --> TermDict["📚 terminology.json"]
 
-    style A5 fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
+    style A51 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A52 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A53 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A54 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
 ```
 
 ---

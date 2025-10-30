@@ -26,31 +26,22 @@
 ## A6-0: 情境圖
 
 ```mermaid
-graph LR
-    subgraph External["外部實體"]
-        A5["A5: 內容撰寫"]
-        A7["A7: 文件整合"]
-    end
-
-    subgraph A6_System["A6-0: 圖表生成系統"]
-        A6["圖表生成<br/>Diagram Generation"]
-    end
-
-    subgraph Controls["控制條件"]
-        DiagramRules["圖表類型規範"]
-        MermaidSyntax["Mermaid 語法"]
-        Quantity["數量限制"]
-    end
-
-    subgraph Outputs["系統輸出"]
-        Flowcharts["🔀 流程圖 .mmd"]
-        Structural["🏗️ 結構圖 .mmd"]
-        Sequence["⏱️ 時序圖 .mmd"]
-        Index["📇 diagram_index.json"]
-    end
+flowchart LR
+    A5["A5: 內容撰寫"]
+    A7["A7: 文件整合"]
+    A6["圖表生成<br/>Diagram Generation"]
+    DiagramRules["圖表類型規範"]
+    MermaidSyntax["Mermaid 語法"]
+    Quantity["數量限制"]
+    Flowcharts["🔀 流程圖 .mmd"]
+    Structural["🏗️ 結構圖 .mmd"]
+    Sequence["⏱️ 時序圖 .mmd"]
+    Index["📇 diagram_index.json"]
 
     A5 -->|description.md| A6
-    Controls -.控制.-> A6
+    DiagramRules -.控制.-> A6
+    MermaidSyntax -.控制.-> A6
+    Quantity -.控制.-> A6
 
     A6 -->|流程圖| Flowcharts
     A6 -->|結構圖| Structural
@@ -69,13 +60,11 @@ graph LR
 ## A6: 頂層功能分解
 
 ```mermaid
-graph TB
-    subgraph A6["A6: 圖表生成"]
-        A61["A6.1<br/>圖表類型識別<br/>Type Identification"]
-        A62["A6.2<br/>流程圖生成<br/>Flowchart Generation"]
-        A63["A6.3<br/>結構圖生成<br/>Structure Diagram Generation"]
-        A64["A6.4<br/>Mermaid 語法驗證<br/>Syntax Validation"]
-    end
+flowchart TB
+    A61["A6.1<br/>圖表類型識別<br/>Type Identification"]
+    A62["A6.2<br/>流程圖生成<br/>Flowchart Generation"]
+    A63["A6.3<br/>結構圖生成<br/>Structure Diagram Generation"]
+    A64["A6.4<br/>Mermaid 語法驗證<br/>Syntax Validation"]
 
     Input["📖 description.md"] --> A61
     A61 --> Types["📋 圖表類型列表"]
@@ -90,7 +79,10 @@ graph TB
     Structural --> A64
     A64 --> Validated["✅ 已驗證圖表"]
 
-    style A6 fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
+    style A61 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A62 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A63 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
+    style A64 fill:#BBDEFB,stroke:#1976D2,stroke-width:2px
 ```
 
 ---

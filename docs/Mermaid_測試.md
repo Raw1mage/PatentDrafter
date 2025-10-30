@@ -3,7 +3,7 @@
 ## 測試 1: 簡單流程圖
 
 ```mermaid
-graph TD
+flowchart TD
     A[開始] --> B[處理]
     B --> C[結束]
 ```
@@ -11,7 +11,7 @@ graph TD
 ## 測試 2: A0 頂層功能圖（簡化版）
 
 ```mermaid
-graph TB
+flowchart TB
     A1[A1 介面管理] --> A2[A2 文件解析]
     A2 --> A3[A3 專利檢索]
     A3 --> A4[A4 大綱生成]
@@ -27,7 +27,7 @@ graph TB
 ## 測試 3: A0 頂層功能圖（完整版 - 無 subgraph）
 
 ```mermaid
-graph TB
+flowchart TB
     Input[📄 技術交底書] --> A1
 
     A1[A1 介面管理<br/>UI Management] --> A2[A2 文件解析<br/>Document Parsing]

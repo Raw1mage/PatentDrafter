@@ -51,7 +51,7 @@
 
 ````markdown
 ```mermaid
-graph TD
+flowchart TD
     A[開始] --> B{決策點}
     B -->|是| C[處理]
     B -->|否| D[結束]
@@ -61,7 +61,7 @@ graph TD
 
 **效果**：
 ```mermaid
-graph TD
+flowchart TD
     A[開始] --> B{決策點}
     B -->|是| C[處理]
     B -->|否| D[結束]
@@ -208,7 +208,7 @@ gantt
 
 ````markdown
 ```mermaid
-graph TD
+flowchart TD
     A[開始]:::startClass --> B[處理]:::processClass
     B --> C[結束]:::endClass
 
