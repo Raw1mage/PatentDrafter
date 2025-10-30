@@ -68,22 +68,16 @@ Input (I) → [活動] → Output (O)
 ### 圖示
 
 ```mermaid
-graph LR
-    subgraph External["外部環境"]
-        User["👤 使用者<br/>(專利工程師)"]
-        Tech["📄 技術交底書<br/>(DOCX)"]
-        PatentDB["🗄️ 專利資料庫<br/>(Google Patents)"]
-        AI["🤖 AI 服務<br/>(Claude API)"]
-    end
+flowchart LR
+    User["👤 使用者<br/>專利工程師"]
+    Tech["📄 技術交底書<br/>DOCX"]
+    PatentDB["🗄️ 專利資料庫<br/>Google Patents"]
+    AI["🤖 AI 服務<br/>Claude API"]
 
-    subgraph System["A-0: 專利撰寫自動化系統"]
-        Core["專利文件<br/>自動生成"]
-    end
+    Core["專利文件<br/>自動生成"]
 
-    subgraph Output["輸出"]
-        Patent["📑 完整專利文件<br/>(MD + DOCX)"]
-        Report["📊 品質報告"]
-    end
+    Patent["📑 完整專利文件<br/>MD + DOCX"]
+    Report["📊 品質報告"]
 
     Tech -->|輸入| Core
     User -->|操作指令| Core
@@ -508,7 +502,7 @@ sequenceDiagram
 
 **system_architecture.mmd**:
 ```mermaid
-graph TB
+flowchart TB
     A[使用者介面] --> B[控制模組]
     B --> C[數據處理模組]
     B --> D[AI 推理模組]
