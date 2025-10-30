@@ -4,3 +4,14 @@ output/
 .claude/settings.local.json
 .mcp.json
 ~*
+
+# Markdown Preview Enhanced 生成的文件
+.crossnote/
+_book/
+_preview/
+
+# HTML 匯出文件（從 Markdown 生成，不納入版本控制）
+docs/html/*.html
+
+# 但保留 README
+!docs/html/README.html
