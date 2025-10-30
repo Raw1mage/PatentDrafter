@@ -32,14 +32,16 @@
 - Mermaid 語法本身正確，問題出在擴充套件的渲染引擎
 
 **解決方案**：
-- 使用 `vstirbu.vscode-mermaid-preview@2.1.2` 的獨立預覽視窗
-- 設定快捷鍵 `Ctrl+Alt+M` 提高效率
-- 或使用線上平台 https://mermaid.live/ 作為備用方案
+- ✅ **已移除**有問題的 `bierner.markdown-mermaid` 擴充套件
+- ✅ **已設定** `Ctrl+Shift+V` 快捷鍵給 `vstirbu.vscode-mermaid-preview`
+- ✅ **已配置**原 Markdown 預覽改為 `Ctrl+K V`
+- 備用方案：使用線上平台 https://mermaid.live/
 
 ### 相關文件
 
 | 文件名稱 | 用途 | 適用場景 |
 |---------|------|---------|
+| [Mermaid_快捷鍵設定指南.md](Mermaid_快捷鍵設定指南.md) | ⭐ 快捷鍵設定步驟 | **首次設定必讀** |
 | [Mermaid_最終解決方案.md](Mermaid_最終解決方案.md) | 快速開始指南 | 想快速了解解決方案 |
 | [Mermaid_使用指南.md](Mermaid_使用指南.md) | 語法參考和基礎教學 | 學習 Mermaid 語法 |
 | [Mermaid_故障排除.md](Mermaid_故障排除.md) | 完整的問題排查指南 | 遇到其他 Mermaid 問題 |
