@@ -51,9 +51,9 @@ output/temp_9ba0a678-5210-42e0-8f52-31b47bf630f6 為示例輸出
 ### 詳細說明
 
 完整的 Mermaid 使用指南和故障排除請參考：
-- [Mermaid 最終解決方案](docs/Mermaid_最終解決方案.md) - 快速開始指南
-- [Mermaid 使用指南](docs/Mermaid_使用指南.md) - 語法參考
-- [Mermaid 故障排除](docs/Mermaid_故障排除.md) - 問題排查
+- [Mermaid 最終解決方案](docs/troubleshooting/Mermaid_最終解決方案.md) - 快速開始指南
+- [Mermaid 使用指南](docs/troubleshooting/Mermaid_使用指南.md) - 語法參考
+- [Mermaid 故障排除](docs/troubleshooting/Mermaid_故障排除.md) - 問題排查
 
 ---
 
