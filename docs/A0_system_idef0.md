@@ -117,28 +117,18 @@ graph LR
 ### 功能分解
 
 ```mermaid
-graph TB
-    subgraph A0["A0: 專利文件自動生成系統"]
-        A1["A1<br/>介面管理<br/>UI Management"]
-        A2["A2<br/>文件解析<br/>Document Parsing"]
-        A3["A3<br/>專利檢索<br/>Patent Search"]
-        A4["A4<br/>大綱生成<br/>Outline Generation"]
-        A5["A5<br/>內容撰寫<br/>Content Writing"]
-        A6["A6<br/>圖表生成<br/>Diagram Generation"]
-        A7["A7<br/>文件整合<br/>Document Merging"]
-        A8["A8<br/>流程控制<br/>Workflow Control"]
-    end
-
+flowchart TB
     Input["📄 技術交底書"] --> A1
-    A1 --> A2
-    A2 --> A3
-    A3 --> A4
-    A4 --> A5
-    A5 --> A6
-    A6 --> A7
+
+    A1["A1 介面管理<br/>UI Management"] --> A2["A2 文件解析<br/>Document Parsing"]
+    A2 --> A3["A3 專利檢索<br/>Patent Search"]
+    A3 --> A4["A4 大綱生成<br/>Outline Generation"]
+    A4 --> A5["A5 內容撰寫<br/>Content Writing"]
+    A5 --> A6["A6 圖表生成<br/>Diagram Generation"]
+    A6 --> A7["A7 文件整合<br/>Document Merging"]
     A7 --> Output["📑 完整專利文件"]
 
-    A8 -.監控.-> A2
+    A8["A8 流程控制<br/>Workflow Control"] -.監控.-> A2
     A8 -.監控.-> A3
     A8 -.監控.-> A4
     A8 -.監控.-> A5
@@ -148,7 +138,6 @@ graph TB
     Control["⚙️ 控制:<br/>專利法規範<br/>品質標準<br/>使用者設定"] -.-> A8
     Mechanism["🔧 機制:<br/>AI API<br/>專利資料庫<br/>檔案系統"] -.-> A8
 
-    style A0 fill:#E3F2FD,stroke:#1976D2,stroke-width:2px
     style A1 fill:#FFF9C4,stroke:#F57C00,stroke-width:2px
     style A2 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px
     style A3 fill:#C8E6C9,stroke:#388E3C,stroke-width:2px
