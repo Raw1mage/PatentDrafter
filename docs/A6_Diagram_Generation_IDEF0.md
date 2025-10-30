@@ -259,28 +259,15 @@ def extract_mermaid_code(text: str) -> str:
 #### 結構圖範例
 
 ```mermaid
-graph TB
-    subgraph System["專利撰寫自動化系統"]
-        subgraph Frontend["前端層"]
-            UI[Web 介面]
-        end
-
-        subgraph Backend["後端層"]
-            Parser[文檔解析模組]
-            Searcher[專利檢索模組]
-            Writer[內容撰寫模組]
-        end
-
-        subgraph Data["數據層"]
-            DB[(資料庫)]
-            FS[(檔案系統)]
-        end
-
-        subgraph External["外部服務"]
-            Claude[Claude AI API]
-            Google[Google Patents API]
-        end
-    end
+flowchart TB
+    UI[Web 介面]
+    Parser[文檔解析模組]
+    Searcher[專利檢索模組]
+    Writer[內容撰寫模組]
+    DB[(資料庫)]
+    FS[(檔案系統)]
+    Claude[Claude AI API]
+    Google[Google Patents API]
 
     UI --> Parser
     Parser --> Searcher
@@ -489,7 +476,7 @@ flowchart TD
 ### 節點形狀參考
 
 ```mermaid
-graph LR
+flowchart LR
     A[矩形節點] --> B(圓角矩形)
     B --> C([體育場形])
     C --> D[[子程序]]

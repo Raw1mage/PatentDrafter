@@ -34,7 +34,7 @@
 **問題語法**（可能導致錯誤）：
 ````markdown
 ```mermaid
-graph TB
+flowchart TB
     subgraph A0["系統"]
         A1["模組1"]
         A2["模組2"]
@@ -62,7 +62,7 @@ flowchart TB
 **問題語法**：
 ````markdown
 ```mermaid
-graph TD
+flowchart TD
     A["📄 文件<br/>多行標題<br/>更多內容"]
 ```
 ````
@@ -154,7 +154,7 @@ flowchart TB
 ### ❌ 避免的寫法
 
 ```mermaid
-graph TB
+flowchart TB
     %% 避免過度巢狀的 subgraph
     subgraph Layer1
         subgraph Layer2

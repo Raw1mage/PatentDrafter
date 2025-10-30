@@ -165,7 +165,7 @@ def merge_sections(content_dir: Path) -> str:
 如圖1所示,本發明的系統包括...
 
 ```mermaid
-graph TB
+flowchart TB
     ...
 ```
 
