@@ -293,17 +293,161 @@ flowchart TB
 
 ---
 
+## 🔴 已知問題：VS Code 擴充套件兼容性
+
+### 問題描述
+
+**症狀**：
+- Mermaid 圖表在 VS Code 預覽中**時好時壞**，間歇性無法渲染
+- 相同的 Mermaid 程式碼在官方平台（https://mermaid.live/ 或 https://www.mermaidchart.com/）上**渲染正常**
+- 錯誤訊息："No diagram type detected matching given configuration for text"
+
+**根本原因**：
+- VS Code 擴充套件 `bierner.markdown-mermaid@1.29.0` 對某些 `subgraph` 結構的支援不穩定
+- 即使使用正確的 `flowchart` 語法，複雜的 `subgraph` 巢狀仍可能觸發渲染失敗
+- 這是擴充套件的已知限制，而非語法錯誤
+
+**驗證方法**：
+```bash
+# 檢查專案中的 subgraph 使用情況
+bash check_mermaid.sh
+
+# 輸出示例：
+# - flowchart 語法: 57 個 (推薦)
+# - 使用 subgraph: 20 個 (可能有問題)
+```
+
+---
+
+### 解決方案選項
+
+#### 選項 1: 使用官方線上平台（推薦）
+
+**優點**：
+- 100% 語法支援，渲染穩定
+- 無需安裝額外軟體
+- 支援匯出 PNG/SVG
+
+**操作步驟**：
+1. 訪問 https://mermaid.live/ 或 https://www.mermaidchart.com/
+2. 複製 VS Code 中的 Mermaid 程式碼
+3. 貼上到線上編輯器
+4. 即時預覽和匯出
+
+**適用場景**：
+- 需要確認圖表最終渲染效果
+- 準備文件交付或簡報
+- 調試複雜的 subgraph 結構
+
+#### 選項 2: 簡化 subgraph 結構
+
+**修改前**：
+````markdown
+```mermaid
+flowchart TB
+    subgraph System["系統"]
+        subgraph Module1["模組1"]
+            A[組件A]
+            B[組件B]
+        end
+        subgraph Module2["模組2"]
+            C[組件C]
+        end
+    end
+```
+````
+
+**修改後**（扁平化）：
+````markdown
+```mermaid
+flowchart TB
+    A[組件A] --> B[組件B]
+    B --> C[組件C]
+
+    %% 使用註解標記模組邊界
+    %% Module1: A, B
+    %% Module2: C
+```
+````
+
+**權衡考量**：
+- ✅ VS Code 預覽兼容性提升
+- ❌ 失去視覺化的模組分組
+- ❌ 需要手動維護註解
+
+#### 選項 3: 使用 Mermaid CLI（進階）
+
+**安裝**：
+```bash
+npm install -g @mermaid-js/mermaid-cli
+```
+
+**使用**：
+```bash
+# 將 .md 文件中的 Mermaid 圖表轉為 PNG
+mmdc -i docs/A0_system_idef0.md -o output/diagrams.png
+
+# 批量處理
+find docs -name "*.md" -exec mmdc -i {} -o {}.png \;
+```
+
+**優點**：
+- 本地渲染，無需網路
+- 可整合到 CI/CD 流程
+- 支援批量處理
+
+**缺點**：
+- 需要安裝 Node.js 環境
+- 學習曲線較高
+
+#### 選項 4: 嘗試替代擴充套件
+
+**可選擴充套件**：
+1. **Mermaid Preview** (`vstirbu.vscode-mermaid-preview`)
+   ```bash
+   # 使用快捷鍵開啟獨立預覽視窗
+   # Ctrl+Shift+P → "Mermaid: Preview Diagram"
+   ```
+   - 優點：獨立渲染引擎，可能更穩定
+   - 缺點：需要額外的預覽步驟
+
+2. **Markdown Preview Enhanced** (`shd101wyy.markdown-preview-enhanced`)
+   - 優點：功能強大，支援多種圖表
+   - 缺點：較重量級，可能影響效能
+
+---
+
+### 本專案的策略建議
+
+**開發階段**：
+- 使用 VS Code 預覽進行快速迭代
+- 遇到渲染問題時，立即切換到 https://mermaid.live/ 驗證
+
+**文件交付階段**：
+- 所有圖表在官方平台上最終確認
+- 必要時使用 Mermaid CLI 批量生成 PNG/SVG
+- 在專案 README 中附上官方平台的分享連結
+
+**長期維護**：
+- 定期檢查擴充套件更新（每季度）
+- 記錄新發現的兼容性問題
+- 保持 `check_mermaid.sh` 腳本更新
+
+---
+
 ## ✉️ 獲取幫助
 
 如果問題仍未解決：
 
-1. **檢查本文件** 的所有解決方案
+1. **檢查本文件** 的所有解決方案，特別是「已知問題」章節
 2. **查看測試檔案** [`docs/Mermaid_測試.md`](Mermaid_測試.md)
-3. **訪問線上編輯器** 驗證語法
-4. **查閱官方文件** 確認語法正確性
-5. **提交 Issue** 到 Mermaid GitHub 專案
+3. **訪問線上編輯器** 驗證語法：https://mermaid.live/
+4. **查閱官方文件** 確認語法正確性：https://mermaid.js.org/
+5. **檢查擴充套件問題**：https://github.com/mjbvz/vscode-markdown-mermaid/issues
+6. **提交 Issue** 到 Mermaid GitHub 專案（如確認是 Mermaid.js 本身的問題）
 
 ---
 
 **最後更新**: 2025-10-30
 **適用版本**: Mermaid v9.0+ / VS Code Mermaid Extensions v1.29.0+
+**已知限制**: VS Code 擴充套件對複雜 subgraph 結構支援不穩定
