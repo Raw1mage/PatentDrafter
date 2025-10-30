@@ -1,7 +1,7 @@
-# 專利撰寫自動化系統 IDEF0 架構建模
+# 專利起草自動化系統 IDEF0 架構建模
 
 ## 文件資訊
-- **專案名稱**: 專利撰寫自動化系統 (Patent Writing Automation System)
+- **專案名稱**: 專利起草自動化系統 (Patent Drafting Automation System)
 - **建模方法**: IDEF0 (Integration Definition for Function Modeling)
 - **版本**: v1.0
 - **建立日期**: 2025-10-30
@@ -23,7 +23,7 @@
 ## 系統概述
 
 ### 目的
-建立一個全自動化的專利申請文件撰寫系統，將現有的 Prompt-based 多 Agent 架構封裝為可獨立運行的產品，提供完整的使用者介面和自動化流程控制。
+建立一個全自動化的專利申請文件起草系統，將現有的 Prompt-based 多 Agent 架構封裝為可獨立運行的產品，提供完整的使用者介面和自動化流程控制。
 
 ### 核心價值主張
 1. **全自動化**: 從上傳技術交底書到輸出完整專利文件，無需人工介入
@@ -36,6 +36,92 @@
 - **輸出**: 完整專利申請文件 (Markdown + DOCX 格式)
 - **使用者**: 企業專利部門、專利事務所、研發人員
 - **外部系統**: Google Patents API, Exa Search API, Claude AI API
+
+### 高層架構圖
+
+```mermaid
+flowchart TB
+    WebUI["🌐 Web 應用<br/>上傳參考資料"]
+    CLI["💻 CLI 應用<br/>命令列模式"]
+    UserRequest["📄 使用者請求<br/>生成專利申請文件"]
+    LeadAgent["主智慧體 Lead Agent<br/>(專案協調器)<br/><br/>工具集: File I/O + Markitdown + MCP Tools + run_subagent + complete_task + Todolist"]
+    S1["📄 文件解析<br/>Input Parser"]
+    S2["🔍 資訊檢索<br/>Information Retriever"]
+    S3["📋 大綱生成<br/>Outline Generator"]
+    S4["✍️ 段落撰寫<br/>Content Writer"]
+    S5["📊 圖表生成<br/>Diagram Generator"]
+    S6["📦 文件整合和轉換<br/>Document Merger"]
+    Memory["💾 檔案系統<br/>Memory<br/>output/temp_UUID/"]
+    TodoList["📝 TodoList<br/>任務管理"]
+    GooglePatents["🔍 Google Patents<br/>專利檢索"]
+    ExaSearch["🌐 Exa Search<br/>Web搜尋"]
+    Markitdown["📝 Markitdown<br/>文件轉換"]
+    ImageGenerator["🖼️ 圖片生成<br/>Image Generator"]
+    DocumentGenerator["📄 文件生成<br/>Document Generator"]
+    FinalOutput["📑 完整專利申請文件"]
+    PatentSkills["🔧 專利起草技能"]
+    DiagramSkills["📊 圖表生成技能"]
+    PatentOutline["📑 專利大綱範本"]
+
+    WebUI -->|使用者請求| UserRequest
+    CLI -->|使用者請求| UserRequest
+    UserRequest --> LeadAgent
+
+    LeadAgent <--> S1
+    LeadAgent <--> S2
+    LeadAgent <--> S3
+    LeadAgent <--> S4
+    LeadAgent <--> S5
+    LeadAgent <--> S6
+
+    LeadAgent <-->|讀寫| Memory
+    LeadAgent <-->|維護| TodoList
+
+    S1 -.呼叫.-> Markitdown
+    S2 -.呼叫.-> GooglePatents
+    S2 -.呼叫.-> ExaSearch
+    S5 -.呼叫.-> ImageGenerator
+    S6 -.呼叫.-> DocumentGenerator
+
+    LeadAgent -->|最終專利文件| FinalOutput
+
+    PatentSkills -->|載入技能| LeadAgent
+    DiagramSkills -->|載入技能| LeadAgent
+    PatentOutline -->|載入技能| LeadAgent
+
+    style LeadAgent fill:#B3D4E8,stroke:#666,stroke-width:2px,color:#333
+    style S1 fill:#D4E8F0,stroke:#666,stroke-width:1px,color:#333
+    style S2 fill:#D4E8F0,stroke:#666,stroke-width:1px,color:#333
+    style S3 fill:#D4E8F0,stroke:#666,stroke-width:1px,color:#333
+    style S4 fill:#D4E8F0,stroke:#666,stroke-width:1px,color:#333
+    style S5 fill:#D4E8F0,stroke:#666,stroke-width:1px,color:#333
+    style S6 fill:#D4E8F0,stroke:#666,stroke-width:1px,color:#333
+    style Memory fill:#E8E8E8,stroke:#666,stroke-width:1px,color:#333
+    style GooglePatents fill:#E8E8E8,stroke:#666,stroke-width:1px,color:#333
+    style ExaSearch fill:#E8E8E8,stroke:#666,stroke-width:1px,color:#333
+    style Markitdown fill:#E8E8E8,stroke:#666,stroke-width:1px,color:#333
+    style DocumentGenerator fill:#E8E8E8,stroke:#666,stroke-width:1px,color:#333
+    style ImageGenerator fill:#E8E8E8,stroke:#666,stroke-width:1px,color:#333
+    style UserRequest fill:#FFF,stroke:#999,stroke-width:1px,color:#333
+    style FinalOutput fill:#FFF,stroke:#999,stroke-width:1px,color:#333
+```
+
+**架構說明**:
+
+- **Lead Agent (主智慧體)**: 專案協調器，負責整體流程控制和任務分配
+  - 工具集: File I/O, Markitdown, MCP Tools, run_subagent, complete_task, Todolist
+  - 技能載入: 專利起草技能、圖表生成技能、專利大綱範本
+
+- **子智慧體 (Sub-Agents)**: 6 個專業子 Agent 執行具體任務
+  - S1: 文件解析 → 使用 Markitdown 工具
+  - S2: 資訊檢索 → 使用 Google Patents + Exa Search
+  - S3: 大綱生成
+  - S4: 段落撰寫
+  - S5: 圖表生成 → 使用 Image Generator
+  - S6: 文件整合 → 使用 Document Generator
+
+- **記憶體系統**: 檔案系統 (output/temp_UUID/) 作為 Agent 間通訊媒介
+- **任務管理**: TodoList 追蹤執行進度
 
 ---
 
@@ -109,7 +195,7 @@ flowchart TB
     A1["A1 介面管理<br/>UI Management"] --> A2["A2 文件解析<br/>Document Parsing"]
     A2 --> A3["A3 專利檢索<br/>Patent Search"]
     A3 --> A4["A4 大綱生成<br/>Outline Generation"]
-    A4 --> A5["A5 內容撰寫<br/>Content Writing"]
+    A4 --> A5["A5 內容起草<br/>Content Drafting"]
     A5 --> A6["A6 圖表生成<br/>Diagram Generation"]
     A6 --> A7["A7 文件整合<br/>Document Merging"]
     A7 --> Output["📑 完整專利文件"]
@@ -142,7 +228,7 @@ flowchart TB
 | A2 | 文件解析 | 解析技術交底書，提取結構化資訊 | parsed_info.json |
 | A3 | 專利檢索 | 搜尋相似專利，分析現有技術 | similar_patents.json |
 | A4 | 大綱生成 | 生成專利文件大綱結構 | patent_outline.md |
-| A5 | 內容撰寫 | 撰寫摘要、權利要求、說明書 | abstract.md, claims.md, description.md |
+| A5 | 內容起草 | 起草摘要、權利要求、說明書 | abstract.md, claims.md, description.md |
 | A6 | 圖表生成 | 生成 Mermaid 流程圖、結構圖 | *.mmd 檔案 |
 | A7 | 文件整合 | 合併所有內容為完整專利文件 | complete_patent.md, patent.docx |
 | A8 | 流程控制 | 協調各模組執行順序，錯誤處理 | 執行日誌、品質報告 |
@@ -268,7 +354,7 @@ flowchart TB
 ### A3: 專利檢索 (Patent Search)
 
 #### 功能描述
-透過 Google Patents API 檢索相似專利，分析現有技術，學習優秀的專利撰寫風格。
+透過 Google Patents API 檢索相似專利，分析現有技術，學習優秀的專利起草風格。
 
 #### IDEF0 圖示
 
@@ -392,17 +478,17 @@ flowchart TB
 
 ---
 
-### A5: 內容撰寫 (Content Writing)
+### A5: 內容起草 (Content Drafting)
 
 #### 功能描述
-根據大綱分別撰寫摘要、權利要求書和具體實施方式，確保邏輯連貫、術語一致。
+根據大綱分別起草摘要、權利要求書和具體實施方式，確保邏輯連貫、術語一致。
 
 #### IDEF0 圖示
 
 ```
-        [專利撰寫規範, 字數要求, 術語詞典]
+        [專利起草規範, 字數要求, 術語詞典]
                     ↓
-[patent_outline.md] → [A5: 內容撰寫] → [abstract.md, claims.md, description.md]
+[patent_outline.md] → [A5: 內容起草] → [abstract.md, claims.md, description.md]
                     ↓
               [術語一致性報告]
                     ↑
@@ -415,16 +501,16 @@ flowchart TB
 |------|------|----------|
 | **Input** | 專利大綱 | `03_outline/patent_outline.md` |
 | | 結構映射 | `03_outline/structure_mapping.json` |
-| **Control** | 專利撰寫規範 | 摘要寫法、權利要求格式、說明書邏輯 |
+| **Control** | 專利起草規範 | 摘要寫法、權利要求格式、說明書邏輯 |
 | | 字數要求 | 摘要 < 300 字、說明書 > 10000 字 |
 | | 術語一致性 | 全文使用統一術語，建立術語詞典 |
 | **Output** | 摘要 | `04_content/abstract.md` |
 | | 權利要求書 | `04_content/claims.md` (獨立+從屬權利要求) |
 | | 具體實施方式 | `04_content/description.md` (>10000 字) |
 | | 術語詞典 | `04_content/terminology.json` |
-| **Mechanism** | abstract-writer Agent | 摘要撰寫專家 |
-| | claims-writer Agent | 權利要求撰寫專家 |
-| | description-writer Agent | 說明書撰寫專家 |
+| **Mechanism** | abstract-drafter Agent | 摘要起草專家 |
+| | claims-drafter Agent | 權利要求起草專家 |
+| | description-drafter Agent | 說明書起草專家 |
 | | Claude AI | 長文本生成能力 |
 
 #### 執行流程
@@ -432,22 +518,22 @@ flowchart TB
 ```mermaid
 sequenceDiagram
     participant Control as A8 流程控制
-    participant A5 as A5 內容撰寫
-    participant Abstract as abstract-writer
-    participant Claims as claims-writer
-    participant Desc as description-writer
+    participant A5 as A5 內容起草
+    participant Abstract as abstract-drafter
+    participant Claims as claims-drafter
+    participant Desc as description-drafter
     participant FS as 檔案系統
 
-    Control->>A5: 啟動內容撰寫
+    Control->>A5: 啟動內容起草
     A5->>FS: 讀取 patent_outline.md
 
-    A5->>Abstract: 撰寫摘要
+    A5->>Abstract: 起草摘要
     Abstract->>FS: 輸出 abstract.md
 
-    A5->>Claims: 撰寫權利要求 (依賴摘要)
+    A5->>Claims: 起草權利要求 (依賴摘要)
     Claims->>FS: 輸出 claims.md
 
-    A5->>Desc: 撰寫說明書 (依賴權利要求)
+    A5->>Desc: 起草說明書 (依賴權利要求)
     Desc->>FS: 輸出 description.md
 
     A5->>A5: 術語一致性檢查
@@ -616,7 +702,7 @@ stateDiagram-v2
 | **A2: 文件解析** | DOCX 檔案 | 解析規則、JSON Schema | parsed_info.json、錯誤日誌 | Markitdown、Claude AI、input-parser Agent |
 | **A3: 專利檢索** | parsed_info.json、關鍵字 | 檢索策略、相似度閾值、數量限制 | similar_patents.json、prior_art_analysis.md | Google Patents API、patent-searcher Agent |
 | **A4: 大綱生成** | parsed_info.json、similar_patents.json | 專利法章節規範、字數要求、邏輯完整性 | patent_outline.md、structure_mapping.json | outline-generator Agent、Claude AI |
-| **A5: 內容撰寫** | patent_outline.md、structure_mapping.json | 專利撰寫規範、字數要求、術語一致性 | abstract.md、claims.md、description.md、terminology.json | abstract/claims/description-writer Agents |
+| **A5: 內容起草** | patent_outline.md、structure_mapping.json | 專利起草規範、字數要求、術語一致性 | abstract.md、claims.md、description.md、terminology.json | abstract/claims/description-drafter Agents |
 | **A6: 圖表生成** | description.md、structure_mapping.json | 圖表類型規範、Mermaid 語法、數量限制 | *.mmd 圖表檔案、diagram_index.json | diagram-generator Agent、Mermaid 驗證器 |
 | **A7: 文件整合** | 所有 MD 檔案、圖表檔案 | 文件格式規範、排版規則、品質檢查清單 | complete_patent.md、patent.docx、summary_report.md | markdown-merger Agent、Pandoc、品質檢查模組 |
 | **A8: 流程控制** | 啟動指令、各模組狀態 | 執行策略、重試策略、品質標準、超時設定 | 執行狀態、進度報告、錯誤日誌、品質報告 | 工作流引擎、Lead Agent、監控模組 |

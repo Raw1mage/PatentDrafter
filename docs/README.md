@@ -2,6 +2,8 @@
 
 此目錄存放專利寫作自動化系統的功能架構設計文件。
 
+> 💡 **快速開始**: 先閱讀 [ARCHITECTURE.md](ARCHITECTURE.md) 了解系統架構總覽
+
 ---
 
 ## 📁 目錄結構
@@ -9,6 +11,7 @@
 ```
 docs/
 ├── README.md                           # 本文件
+├── ARCHITECTURE.md                     # 系統架構總覽 (開發者入口)
 ├── A0_system_idef0.md                  # 系統頂層 IDEF0 架構
 ├── A1_UI_Management_IDEF0.md           # 使用者介面管理模組
 ├── A2_Document_Parsing_IDEF0.md        # 文件解析模組
@@ -64,6 +67,23 @@ A-0: 系統邊界圖（Context Diagram）
 ## 📊 系統架構文件導覽
 
 ### 從哪裡開始閱讀？
+
+#### 0. 系統架構總覽 (建議從這裡開始)
+👉 [ARCHITECTURE.md](ARCHITECTURE.md)
+
+**內容概要**:
+- 系統 Workflow 設計圖
+- 完整專案目錄結構
+- 執行流程和資料流轉
+- 技術棧總覽
+- 品質標準
+
+**適合對象**:
+- 所有開發者 (新手入門必讀)
+- 專案管理者
+- 需要快速了解系統的人員
+
+---
 
 #### 1. 系統整體架構
 👉 [A0_system_idef0.md](A0_system_idef0.md)

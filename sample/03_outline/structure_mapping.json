@@ -1,0 +1,379 @@
+{
+  "patent_title": "一種基於混合協議的大規模文件分發的方法和裝置",
+  "patent_id": "temp_9ba0a678-5210-42e0-8f52-31b47bf630f6",
+  "creation_timestamp": "2025-10-20T12:00:00Z",
+  "outline_version": "1.0",
+  "sections": [
+    {
+      "id": "abstract",
+      "title": "說明書摘要",
+      "section_number": "摘要",
+      "max_words": 300,
+      "content_requirements": [
+        "技術問題：大規模文件分發中源站壓力大、帶寬費用高、分發速度慢",
+        "技術方案：基於混合協議的文件分發方法和裝置",
+        "創新點：智能協議切換、源站壓力精細控制、流式傳輸啓動技術",
+        "有益效果：降低成本、提升速度、增強兼容性"
+      ],
+      "writing_guidelines": [
+        "簡潔明瞭，突出技術核心",
+        "包含技術問題、方案和效果的完整邏輯鏈",
+        "用詞準確，避免誇張表述"
+      ]
+    },
+    {
+      "id": "claims",
+      "title": "權利要求書",
+      "section_number": "權利要求",
+      "max_words": 2000,
+      "content_requirements": [
+        "獨立權利要求：核心方法和裝置",
+        "從屬權利要求：具體技術實現細節",
+        "多層次保護：方法、裝置、系統、介質"
+      ],
+      "writing_guidelines": [
+        "權利要求應當清晰、簡要地限定要求專利保護的範圍",
+        "獨立權利要求應當從整體上反映發明的技術方案",
+        "從屬權利要求應當對引用的權利要求作進一步限定"
+      ],
+      "claims_structure": {
+        "independent_claims": [
+          {
+            "claim_number": 1,
+            "type": "method",
+            "focus": "基於混合協議的大規模文件分發方法",
+            "key_features": ["混合協議切換", "源站控制", "流式傳輸"]
+          },
+          {
+            "claim_number": 2,
+            "type": "apparatus",
+            "focus": "基於混合協議的大規模文件分發裝置",
+            "key_features": ["系統架構", "組件功能", "協同工作"]
+          }
+        ],
+        "dependent_claims": [
+          {
+            "claim_range": "3-5",
+            "focus": "客戶端下載速度和質量保證技術",
+            "detail_level": "具體實現算法和流程"
+          },
+          {
+            "claim_range": "6-8",
+            "focus": "數據源服務器壓力精細化控制技術",
+            "detail_level": "控制參數和分配機制"
+          },
+          {
+            "claim_range": "9-11",
+            "focus": "下載快啓動技術",
+            "detail_level": "流式傳輸機制"
+          },
+          {
+            "claim_range": "12-18",
+            "focus": "系統架構和存儲介質",
+            "detail_level": "組件配置和程序產品"
+          }
+        ]
+      }
+    },
+    {
+      "id": "technical_field",
+      "title": "技術領域",
+      "section_number": "1",
+      "min_words": 200,
+      "max_words": 300,
+      "content_requirements": [
+        "明確技術領域歸屬",
+        "說明技術背景和應用場景",
+        "突出技術價值和意義"
+      ],
+      "writing_guidelines": [
+        "用詞準確，範圍適當",
+        "與權利要求的技術方案相對應",
+        "體現發明的技術貢獻"
+      ],
+      "key_terms": [
+        "大規模文件分發",
+        "網絡通信技術",
+        "內容分發網絡(CDN)",
+        "P2P技術",
+        "混合協議"
+      ]
+    },
+    {
+      "id": "background_art",
+      "title": "背景技術",
+      "section_number": "2",
+      "min_words": 800,
+      "max_words": 1000,
+      "content_requirements": [
+        "詳細分析現有技術方案",
+        "指出存在的技術問題",
+        "明確本發明要解決的技術問題"
+      ],
+      "writing_guidelines": [
+        "客觀分析現有技術",
+        "清楚說明技術缺陷",
+        "突出技術改進的必要性"
+      ],
+      "existing_technologies": [
+        {
+          "name": "HTTP/HTTPS傳統分發",
+          "problems": ["源站壓力大", "帶寬費用高", "分發速度慢"]
+        },
+        {
+          "name": "CDN方案",
+          "problems": ["成本較高", "依賴廠商服務", "擴展性受限"]
+        },
+        {
+          "name": "P2P方案",
+          "problems": ["兼容性差", "啓動速度慢", "成功率低"]
+        },
+        {
+          "name": "混合P2P-CDN方案",
+          "problems": ["技術綁定", "控制不精細", "成本高"]
+        }
+      ]
+    },
+    {
+      "id": "invention_content",
+      "title": "發明內容",
+      "section_number": "3",
+      "min_words": 1000,
+      "max_words": 1200,
+      "content_requirements": [
+        "技術方案概述",
+        "核心創新點詳述",
+        "有益效果說明"
+      ],
+      "writing_guidelines": [
+        "清楚完整地描述技術方案",
+        "突出技術創新點",
+        "量化說明有益效果"
+      ],
+      "core_innovations": [
+        {
+          "name": "客戶端下載速度和質量保證技術",
+          "description": "BT協議爲主、HTTP協議爲輔的智能混合下載",
+          "key_features": ["速度監測", "協議切換", "質量保障"]
+        },
+        {
+          "name": "數據源服務器壓力精細化控制技術",
+          "description": "全局參數配置和動態配額分配機制",
+          "key_features": ["併發控制", "帶寬限制", "流量管理"]
+        },
+        {
+          "name": "下載快啓動技術",
+          "description": "中繼服務器流式傳輸啓動機制",
+          "key_features": ["邊下載邊服務", "啓動優化", "用戶體驗"]
+        }
+      ],
+      "beneficial_effects": [
+        "對源站/CDN的壓力進行精細化控制，有效控制成本",
+        "帶寬成本遠低於CDN方案，實現成本和效率的最佳平衡",
+        "平均下載速度、啓動速度顯著高於其他方案",
+        "網絡環境兼容度高，兼容多種網絡",
+        "和CDN服務商無關，技術方案自主可控"
+      ]
+    },
+    {
+      "id": "drawings_description",
+      "title": "附圖說明",
+      "section_number": "4",
+      "min_words": 300,
+      "max_words": 400,
+      "content_requirements": [
+        "系統說明各附圖內容",
+        "清楚展示技術方案",
+        "支持權利要求的保護範圍"
+      ],
+      "writing_guidelines": [
+        "附圖說明應當簡明",
+        "與附圖內容完全對應",
+        "突出技術特徵"
+      ],
+      "drawings_list": [
+        {
+          "figure_number": 1,
+          "title": "系統架構圖",
+          "description": "展示控制服務器、中繼服務器、數據庫、客戶端和數據源服務器的系統架構"
+        },
+        {
+          "figure_number": 2,
+          "title": "工作流程圖",
+          "description": "展示從任務創建到文件分發的完整工作流程"
+        },
+        {
+          "figure_number": 3,
+          "title": "混合協議切換流程圖",
+          "description": "展示基於下載速度的協議切換算法流程"
+        },
+        {
+          "figure_number": 4,
+          "title": "源站壓力控制流程圖",
+          "description": "展示源站壓力控制和配額分配的詳細流程"
+        },
+        {
+          "figure_number": 5,
+          "title": "流式傳輸啓動示意圖",
+          "description": "展示中繼服務器邊下載邊服務的流式傳輸機制"
+        }
+      ]
+    },
+    {
+      "id": "detailed_embodiments",
+      "title": "具體實施方式",
+      "section_number": "5",
+      "min_words": 10000,
+      "max_words": 15000,
+      "content_requirements": [
+        "詳細描述系統組件",
+        "詳述核心算法實現",
+        "提供具體實施例",
+        "說明技術參數配置"
+      ],
+      "writing_guidelines": [
+        "詳細清楚，使所屬技術領域的技術人員能夠實現",
+        "提供足夠的實施細節",
+        "支持權利要求的保護範圍",
+        "體現發明的技術進步"
+      ],
+      "implementation_details": {
+        "system_components": [
+          {
+            "name": "控制服務器",
+            "functions": ["任務管理", "參數配置", "配額分配", "全局控制"],
+            "implementation_focus": "控制邏輯和算法實現"
+          },
+          {
+            "name": "中繼服務器",
+            "functions": ["文件拉取", "協議服務", "流式傳輸", "數據緩存"],
+            "implementation_focus": "混合協議支持和流式傳輸"
+          },
+          {
+            "name": "數據庫",
+            "functions": ["任務持久化", "狀態管理", "配置存儲", "日誌記錄"],
+            "implementation_focus": "數據模型和存儲結構"
+          },
+          {
+            "name": "客戶端",
+            "functions": ["協議切換", "速度監測", "文件下載", "狀態報告"],
+            "implementation_focus": "智能切換算法和下載邏輯"
+          }
+        ],
+        "key_algorithms": [
+          {
+            "name": "混合協議下載算法",
+            "implementation_detail": "速度監測、閾值判斷、協議切換的具體實現"
+          },
+          {
+            "name": "全局流量控制算法",
+            "implementation_detail": "配額分配、動態調整、壓力控制的算法邏輯"
+          },
+          {
+            "name": "流式傳輸啓動算法",
+            "implementation_detail": "邊下載邊服務、緩衝管理、啓動優化的實現"
+          }
+        ],
+        "embodiments": [
+          {
+            "number": 1,
+            "title": "企業內部軟件更新分發場景",
+            "focus": "大規模內網環境下的軟件分發優化"
+          },
+          {
+            "number": 2,
+            "title": "雲存儲服務場景",
+            "focus": "公有云環境中的文件分發加速"
+          },
+          {
+            "number": 3,
+            "title": "媒體內容分發場景",
+            "focus": "大文件媒體內容的高效分發"
+          },
+          {
+            "number": 4,
+            "title": "大規模遊戲更新分發場景",
+            "focus": "遊戲客戶端更新的快速分發"
+          }
+        ],
+        "technical_parameters": [
+          {
+            "category": "協議切換參數",
+            "parameters": ["速度閾值", "切換延遲", "重試機制"]
+          },
+          {
+            "category": "源站控制參數",
+            "parameters": ["併發連接數", "帶寬限制", "流量配額"]
+          },
+          {
+            "category": "流式傳輸參數",
+            "parameters": ["緩衝區大小", "啓動延遲", "傳輸速度"]
+          }
+        ]
+      }
+    }
+  ],
+  "quality_requirements": {
+    "terminology_consistency": {
+      "requirement": "全文術語必須保持一致",
+      "key_terms": [
+        "混合協議",
+        "BT協議",
+        "HTTP協議",
+        "控制服務器",
+        "中繼服務器",
+        "客戶端",
+        "數據源服務器",
+        "流式傳輸",
+        "協議切換",
+        "配額分配"
+      ]
+    },
+    "logical_completeness": {
+      "requirement": "各章節邏輯鏈條必須完整",
+      "logical_flow": [
+        "技術問題識別 → 技術方案設計 → 技術效果驗證",
+        "系統架構設計 → 核心算法實現 → 具體應用部署",
+        "創新點提出 → 技術優勢分析 → 實施效果驗證"
+      ]
+    },
+    "technical_rigor": {
+      "requirement": "技術描述必須準確嚴謹",
+      "accuracy_points": [
+        "技術術語使用準確",
+        "算法描述邏輯清晰",
+        "系統設計符合實際",
+        "參數設置合理可行"
+      ]
+    },
+    "patent_compliance": {
+      "requirement": "嚴格遵循專利法及審查指南要求",
+      "compliance_points": [
+        "權利要求清楚簡要",
+        "說明書支持權利要求",
+        "技術方案完整公開",
+        "有益效果有據可依"
+      ]
+    }
+  },
+  "metadata": {
+    "author": "outline-generator",
+    "creation_time": "2025-10-20T12:00:00Z",
+    "input_files": [
+      "parsed_info.json",
+      "similar_patents.json",
+      "prior_art_analysis.md"
+    ],
+    "output_files": [
+      "patent_outline.md",
+      "structure_mapping.json"
+    ],
+    "next_steps": [
+      "abstract-writer",
+      "claims-writer",
+      "description-writer",
+      "diagram-generator",
+      "markdown-merger"
+    ]
+  }
+}
